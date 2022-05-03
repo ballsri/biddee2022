@@ -49,8 +49,8 @@ async function registerUser(event) {
 }
 
 function check(event){
-	console.log(document.getElementById('password').value)
-	console.log(document.getElementById('confirm__password').value)
+	// console.log(document.getElementById('password').value)
+	// console.log(document.getElementById('confirm__password').value)
 	if(document.getElementById('password').value == document.getElementById('confirm__password').value){
 		//console.log("Hee")
 		document.getElementById('password').classList.remove("form__input--error")

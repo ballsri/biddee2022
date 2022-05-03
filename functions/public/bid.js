@@ -24,7 +24,7 @@ socket.on('auctionUpdate', function(data){
         document.getElementById('bidNum').value = data.carAuct.length;
         
         var i = procData.length-1;
-        console.log(procData[i].price);
+        // console.log(procData[i].price);
         var str = ' <tr class="table-border"><td class="b-word text-center py-2"> '
                 +(i+1 ) + '</td><td class="b-word text-center py-2">'
                 + procData[i].lastname +'</td><td class="b-word text-center py-2 color-green-bid" id = "priceTable'+procData[i].price+'">'
@@ -33,7 +33,7 @@ socket.on('auctionUpdate', function(data){
                 $('#auctionList').prepend(str);
         document.getElementById('priceTable'+procData[i-1].price).classList.remove('color-green-bid')
         document.getElementById('priceTable'+procData[i-1].price).classList.add('color-red-bid')
-        console.log(procData[i-1].price)
+        // console.log(procData[i-1].price)
             }
         
 })
