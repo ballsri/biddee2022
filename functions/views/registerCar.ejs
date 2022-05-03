@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <link rel="stylesheet" href="../index.css">
+    <!-- <link rel="stylesheet" href="styleswup.css"> -->
+    <title><%= title %> | Bid dee</title>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    
+    <link rel="shortcut icon" type="image/x-icon" href="../Assets/img/biddee_icon.png" />
+</head>
+<body class = "bg-home font-biddee">
+    <!-- nav-bar -->
+    <% if( user == ''){ %>
+        <%-include('./extra-views/navLogin.ejs')%>
+
+    <%} else {%>
+        <%-include('./extra-views/navUser.ejs')%>
+    <%}
+    %>
+
+    <!-- content -->
+    <div class = "py-2" style = "background-color: rgb(206,32,38);"></div>
+    <div class="bg-white mx-auto pt-5">
+        <div class="container-70 flex flex-col">
+            <div class = "flex justify-center mt-20">
+                <div class="text-center text-biddee-28 mb-5 px-10"  style = "width:400px">
+                    Sell on Bid Dee
+                </div>
+            </div>
+            <div class = "flex justify-center">
+                <div class="text-center text-biddee-28 mb-5 px-10"  style = "width:400px">
+                    Tell us about your car
+                </div>
+            </div>
+            <div class = "flex justify-center">
+                <div class="px-10" style = "width:700px">
+                    <form id = "form" action = "/register-car/createCar" enctype="multipart/form-data" method="POST">
+                        <div class="text-left mb-5 px-4 flex flex-col   ">
+                            <label class = "mb-2 text-biddee-16 required-dot">Make</label>
+                            <input class = "width-input text-biddee-16" type="text" style = "width:100%; height: 30px;" required name ="Make" id = "Make">
+                        </div>
+                        <div class="text-left mb-5 px-4 flex flex-col   ">
+                            <label class = "mb-2 text-biddee-16 required-dot">Model</label>
+                            <input class = "width-input text-biddee-16" type="text" style = "width:100%; height: 30px;" required name ="Model" id = "Model">
+                        </div>
+                        <div class="text-left mb-5 px-4 flex flex-col">
+                            <label class = "mb-2 text-biddee-16 required-dot">Year</label>
+                            <input class = "width-input text-biddee-16" type="text" style = "width:100%; height: 30px;" required name ="Year" id = "Year">
+                        </div>
+                        <div class="text-left mb-5 px-4 flex flex-col">
+                            <label class = "mb-2 text-biddee-16 required-dot">Vin Number</label>
+                            <input class = "width-input text-biddee-16" type="text" style = "width:100%; height: 30px;" required name ="Vin__number" id = "Vin__number">
+                        </div>
+                        <div class="text-left mb-5 px-4 flex flex-col">
+                            <label class = "mb-2 text-biddee-16 required-dot">Engine size</label>
+                            <input class = "width-input text-biddee-16" type="text" style = "width:100%; height: 30px;" required name ="Engine__size" id = "Engine__size">
+                        </div>
+                        <div class="text-left mb-5 px-4 flex flex-col">
+                            <label class = "mb-2 text-biddee-16 required-dot">Trasmission</label>
+                            <input class = "width-input text-biddee-16" type="text" style = "width:100%; height: 30px;" required name ="Trasmission" id = "Transmission">
+                        </div>
+                        <div class="text-left mb-5 px-4 flex flex-col">
+                            <label class = "mb-2 text-biddee-16 required-dot">Milage</label>
+                            <input class = "width-input text-biddee-16" type="text" style = "width:100%; height: 30px;" required name ="Milage" id = "Milage">
+                        </div>
+                        <div class="text-left mb-5 px-4 flex flex-col">
+                            <label class = "mb-2 text-biddee-16 required-dot">Registration year</label>
+                            <input class = "width-input text-biddee-16" type="text" style = "width:100%; height: 30px;" required name ="Registration__year" id = "Registration__year">
+                        </div>
+                        <div class="text-left mb-5 px-4 flex flex-col">
+                            <label class = "mb-2 text-biddee-16 required-dot">Color</label>
+                            <input class = "width-input text-biddee-16" type="text" style = "width:100%; height: 30px;" required name ="Color" id = "Color">
+                        </div>
+                        <div class="text-left mb-5 px-4 flex flex-col">
+                            <label class = "mb-2 text-biddee-16 required-dot">List of the addition modification</label>
+                            <input class = "width-input text-biddee-16" type="text" style = "width:100%; height: 30px;" required name ="Modification" id = "Modification">
+                        </div>
+                        <div class="text-left mb-5 px-4 flex flex-col">
+                            <label class = "mb-2 text-biddee-16 required-dot">Location</label>
+                            <input class = "width-input text-biddee-16" type="text" style = "width:100%; height: 30px;" required name ="Location" id = "Location">
+                        </div>
+                        <div class="text-left mb-5 px-4 flex flex-col">
+                            <label class = "mb-2 text-biddee-16 required-dot">Open auction price</label>
+                            <input class = "width-input text-biddee-16" type="number" min="0" style = "width:100%; height: 30px;" required name ="Open__price" id = "Open__price">
+                        </div>
+                        <div class="text-left mb-5 px-4 flex flex-col">
+                            <label class = "mb-2 text-biddee-16 required-dot">Description</label>
+                            <div class = "width-input-content" style = "height: 150px; width:100%">
+                                <textarea class = "width-input text-biddee-16"  name="description" id="description" cols="40" rows="10" style = "resize: none;" placeholder required></textarea>
+                            </div>
+                        </div>
+                        <div class="text-left mb-5 px-4 flex flex-col">
+                            <div style = "width:100px">
+                                <input type="file" class="form-control" required name="images" accept="image/*" id = "input__file" multiple>
+                            </div>
+                            <label class = "mb-2 text-biddee-16 text-red-600 pt-5">We will need just a few pictures of your vehicle for the verification process<br> (For example, Front , Back , sides of the vehicle, Front seats, Back seats, Dashboard and Engine)</label>
+                        </div>
+                        <div class="flex justify-end mt-10 mb-5 px-4">
+                            <button class = "btn-sell text-biddee-14 px-12" type="submit" style = "height: 30px;">Next</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end content -->
+
+    <!-- Footage -->
+                <%- include('./extra-views/footer.ejs') %>
+                <script src="../onClick.js"></script>
+                
+                <script>
+                    $("#input__file").on("change", function() {
+                        if ($("#input__file")[0].files.length > 30) {
+                            alert("You can select a maxmimum 30 images");
+                            $("#input__file").val("");
+                        } 
+                    });
+
+                </script>
+</body>
+</html>

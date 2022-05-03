@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <link rel="stylesheet" href="../index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css">
+    <title><%=title %> | Bid dee</title>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js" ></script>
+    <link rel="shortcut icon" type="image/x-icon" href="../Assets/img/biddee_icon.png" />
+</head>
+<body class = "bg-white font-biddee">
+    <!-- navbar -->
+    <% if( user == ''){ %>
+        <%-include('./extra-views/navLogin.ejs')%>
+
+    <%} else {%>
+        <%-include('./extra-views/navUser.ejs')%>
+    <%}
+    %>
+    <!-- end nav -->
+    
+    <!-- content -->
+    
+    <div class = "py-2 mb-5" style = "background-color: rgba(206,32,38, 1);"></div>
+    <div class="text-biddee-28 mt-10 text-center">ACTIVE AUCTION</div>
+    <div id="page" style="visibility: hidden;" class="container-70">
+        <div class = "flex justify-center md:justify-end mr-10 mb-5" >
+            <form id="search" class="flex justify-center"  style = "max-width: 300px;">
+
+                <input type="text" id="search__text" class="width-input mr-2" placeholder="Search...">
+                <button class = "btn-bid" type="submit">search</button>
+           
+        </form>
+        </div>
+        <div class="flex justify-center md:justify-start text-biddee-22 pl-5 text-white mb-5" style = "background-color: rgba(206,32,38, 1);">
+            <div class = "p-2">
+                All AUCTION
+            </div>
+        </div>
+        <section class="responsive slider">
+            <% all.forEach( car=> { %>
+                
+                <div>
+                    <div class="max-w-sm rounded overflow-hidden shadow-lg">
+                        <img style = "width:500px;height:230px;object-fit: fill;" src="<%= car.arrayOfImage[0].path%>" alt="">
+                        <div class="px-2 py-1">
+                          <div class="font-thin text-biddee-18 mb-2 pl-2 pr-2"><%= car.carProp.make+" "+ car.carProp.model %></div>
+                          <div class="font-thin text-biddee-18 mb-2 pl-2 pr-2" ><span class="price-<%=car._id%>"><%=Number(car.lastPrice).toLocaleString()%></span> BAHT</div>
+                        </div>
+                        <div class="pb-2 ">
+                            <div class = "flex justify-center md:justify-end text-biddee-16 p-5">
+                                <button class = "btn-bid" onclick="window.location.href = '/auction/car?id=<%=car._id%>'">Bid</button>
+                            </div>
+                            
+                            <div class = "flex justify-center md:justify-end text-biddee-18 mt-2 p-5">
+                                &nbsp;<span class="Ticking"  ><%= car.startTime.toLocaleString()%></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <%})%>
+            
+          </section>
+          <div class="flex justify-center md:justify-start text-biddee-22 pl-5 text-white mb-5" style = "background-color: rgba(206,32,38, 1);">
+            <div class = "p-2">
+                NEWLY LISTED
+            </div>
+            </div>
+          <section class="responsive slider">
+            <% newly.forEach( car => { %>
+
+                <div>
+                    <div class="max-w-sm rounded overflow-hidden shadow-lg">
+                        <img style = "object-fit: contain;width:500px;height:230px;" src="<%= car.arrayOfImage[0].path%>" alt="">
+                        <div class="px-6 py-4">
+                          <div class="font-thin text-biddee-18 mb-2"><%= car.carProp.make+" "+ car.carProp.model %></div>
+                          <div class="font-thin text-biddee-18 mb-2" ><span class="price-<%=car._id%>"><%=Number(car.lastPrice).toLocaleString()%></span> BAHT</div>
+                        </div>
+                        <div class="pt-4 pb-2 ">
+                            <div class = "flex justify-center md:justify-end text-biddee-16 p-5">
+                                <button class = "btn-bid" onclick="window.location.href = '/auction/car?id=<%=car._id%>'">Bid</button>
+                            </div>
+                            <div class = "flex justify-center md:justify-end text-biddee-18 mt-2 p-5">
+                                &nbsp;<span class="Ticking"  ><%= car.startTime.toLocaleString()%></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <%})%>
+        </section>
+        <div class="flex justify-center md:justify-start text-biddee-22 pl-5 text-white mb-5" style = "background-color: rgba(206,32,38, 1);">
+            <div class = "p-2">
+                ENDING SOON
+            </div>
+        </div>
+        <section class="responsive slider">
+            <% endsoon.forEach( car => { %>
+
+
+                
+                <div>
+                    <div class="max-w-sm rounded overflow-hidden shadow-lg">
+                        <img style = "max-width:500px;height:230px;object-fit: fill;" src="<%= car.arrayOfImage[0].path%>" alt="">
+                        <div class="px-6 py-4">
+                          <div class="font-thin text-biddee-18 mb-2"><%= car.carProp.make+" "+ car.carProp.model %></div>
+                          <div class="font-thin text-biddee-18 mb-2" ><span class="price-<%=car._id%>"><%=Number(car.lastPrice).toLocaleString()%></span> BAHT</div>
+                        </div>
+                        <div class="pt-4 pb-2 ">
+                            <div class = "flex justify-center md:justify-end text-biddee-16 p-5">
+                                <button class = "btn-bid" onclick="window.location.href = '/auction/car?id=<%=car._id%>'">Bid</button>
+                            </div>
+                            <div class = "flex justify-center md:justify-end text-biddee-18 mt-2 p-5">
+                                &nbsp;<span class="Ticking"  ><%= car.startTime.toLocaleString()%></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <%})%>
+        </section>
+        <div class="text-biddee-28 mt-10 text-center">EXPIRED AUCTION</div>
+        <div class="flex justify-center md:justify-start text-biddee-22 pl-5 text-white mb-5" style = "background-color: rgba(206,32,38, 1);">
+            <div class = "p-2">
+                EXPIRED AUCTION
+            </div>
+        </div>
+        <section class="responsive slider">
+            <% expired.forEach( car => { %>
+
+
+                
+                <div>
+                    <div class="max-w-sm rounded overflow-hidden shadow-lg"> 
+                        <img style = "max-width:500px;height:230px;object-fit: fill;" src="<%= car.arrayOfImage[0].path%>" alt="">
+                        <div class="px-6 py-4">
+                          <div class="font-thin text-biddee-18 mb-2"><%= car.carProp.make+" "+ car.carProp.model %></div>
+                          <div class="font-thin text-biddee-18 mb-2" ><span class="price-<%=car._id%>"><%=Number(car.lastPrice).toLocaleString()%></span> BAHT</div>
+                        </div>
+                        <div class="pt-4 pb-2 ">
+                            <div class = "flex justify-center md:justify-end text-biddee-16 p-5">
+                                <button class = "btn-bid" onclick="window.location.href = '/auction/car?id=<%=car._id%>'">Details</button>
+                            </div>
+                          
+                        </div>
+                        <div class = "flex justify-center md:justify-end text-biddee-18 mt-2 p-5">
+                            Already sold&nbsp;
+                        </div>
+                    </div>
+                </div>
+            <%})%>
+        </section>
+    </div>  
+    <div class = "flex flex-col md:flex-row items-center md:justify-center mt-5">
+    </div>
+    <!-- end content -->
+
+    <!-- Footage -->
+    <%- include('./extra-views/footer.ejs') %>
+    <script src="../auction.js"></script>
+    <script>
+        const host = "https://biddee.herokuapp.com/";
+        const socket = io.connect(host+'/auction/car') ;
+        socket.on('allAuctionUpdate', function(data){
+    
+            var str = '.price-'+ data.carId
+            // console.log(str)
+      document.querySelector(str).innerHTML = Number(data.price).toLocaleString();
+   
+  })
+    </script>
+    <script src="../onClick.js"></script>
+</body>
+</html>

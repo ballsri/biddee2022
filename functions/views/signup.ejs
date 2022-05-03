@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    
+        <meta name = "viewport" content="width=devicewidth", initial-scale=1.0>
+        <meta charset="utf-8">
+        <title><%= title %> | Bid dee</title>
+        <link rel="short icon" href="/asset/favicon.ico">
+        <link rel="stylesheet" href="../signUp.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">   
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+        <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+        <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap" rel="stylesheet"> -->
+        <style>
+            .bg-fb{
+                background-color: rgba(59, 89, 152, 1);
+            }
+    
+            .bg-fb:hover{
+                background-color: rgba(59, 89, 152, 0.95);
+            }
+            .bg-google{
+                background-color: rgba(59, 130, 246, 1);
+            }
+            .bg-google:hover{
+                background-color: rgba(59, 130, 246, 0.95);
+            }
+            .hr-signup{
+                width: 60px;
+                text-align: center;
+                margin: 0.25rem;
+                height: 11px;
+                border-bottom: 1px solid;
+                border-color: rgba(var(--color_13),var(--alpha-color_13,1));
+            }
+        </style>
+    </head>
+    <body>
+        <div class = "containers">
+            <img src="../Assets/img/biddee_icon.png" alt="Biddee Logo">
+            
+            <form class = "form" id = "signUp" action="/register" method="post">
+                <h1 class = "form__tittle">Sign Up</h1>
+                <div class = "form__message form__message--error"></div>
+                <h4>First name</h4>
+                <div class="form__input--group">
+                    <input type="text" class = "form__input" id = "first__name" name="first__name" autofocus placeholder="First name">
+                    <div class="form_input-error-message"></div>
+                </div>
+                <h4>Last name</h4>
+                <div class="form__input--group">
+                    <input type="text" class = "form__input" id = "last__name" name="last__name" autofocus placeholder="Last name">
+                    <div class="form_input-error-message"></div>
+                </div>
+                <h4>Email</h4>
+                <div class="form__input--group">
+                    <input type="text" class = "form__input" id = "email" name="email" autofocus placeholder="Email">
+                    <div class="form_input-error-message"></div>
+                </div>
+                <h4>Password</h4>
+                <div class="form__input--group">
+                    <input type="password" class = "form__input form__input--error" name= "password" id = "password" autofocus placeholder="Password">
+                </div>
+                <h4>Confirm Password</h4>
+                <div class="form__input--group">
+                    <input type="password" class = "form__input form__input--error" name = "confirm__password" id = "confirm__password" autofocus placeholder="Confirm Password">
+                </div>
+                <button class="form__button" type = "submit" >Continue</button>
+              
+            </form>
+            <p class="form__text mt-3">
+                <a href="/auth/login" class = "form__link">Already have an account? Log in</a>
+            </p>
+            <p class="form__text mt-3">
+                <a href="/" class = "form__link">Continue as guest</a>
+            </p>
+
+        </div>
+    
+           
+        <script src= "../signUp.js"> </script>
+    </body>
+</html>

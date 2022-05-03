@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <link rel="stylesheet" href="../index.css">
+    <!-- <link rel="stylesheet" href="styleswup.css"> -->
+    <title><%= title %> | Bid dee</title>
+    
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    
+    <link rel="shortcut icon" type="image/x-icon" href="../Assets/img/biddee_icon.png" />
+</head>
+<body class = "bg-home font-biddee">
+    <!-- navbar -->
+    <% if( user == ''){ %>
+        <%-include('./extra-views/navLogin.ejs')%>
+
+    <%} else {%>
+        <%-include('./extra-views/navUser.ejs')%>
+    <%}
+    %>
+
+    <!-- content -->
+    <div class="bg-white mx-auto pt-5">
+        <div class="container-70 flex flex-col items-center">
+            <div>
+                <img class = "flex justify-center" src="https://static.wixstatic.com/media/58352c_b6e6ffcf527b4174af3f9210a9818e98~mv2.png/v1/fill/w_120,h_120,al_c,usm_0.66_1.00_0.01,enc_auto/2736918.png" alt="2736918.png" style="width: 120px; height: 120px;">
+            </div>
+            <div class="text-center text-biddee-28 mb-5 px-10"  style = "width:400px">
+                Register to Bid
+            </div>
+            <div class="text-center text-biddee-16 mb-5 px-10"  style = "width:400px">
+                We require a valid credit card on file before you can bid. Winners pay a 5% buyer's fee to Bid Dee on top of the winning amount. The minimum buyer's fee is 5,000 and maximum is 200,000.
+            </div>
+            <div class="text-center text-biddee-16 mb-5 px-10"  style = "width:400px">
+                We will keep your card on hold whenever you place a bid and will return if you are not a winner. Please bid wisely!
+            </div>
+            <div class="text-center text-biddee-16 mb-5 px-10"  style = "width:400px">
+                Another way, you can transfer your money into our website for bidding fees via Promptpay, in case you do not have a credit card.
+            </div>
+
+            <form class="mb-5 px-10 bg-home-detail pt-10" id="registerBid" autofocus placeholder="Name" name = "registerBid" action="/register-bid" method="post" style = "width:400px">
+                <input type="hidden" name="omise_token" id="omise_token">
+                <div class="text-center text-biddee-28 mb-5">
+                    Credit Card Information
+                </div>
+                <h1 class = "form__tittle" id="token_errors"> </h1>
+                <div class="text-left mb-5 px-4 flex flex-col">
+                    <label class = "mb-2 text-biddee-14">Name on card</label>
+                    <input class = "width-input-2 text-biddee-16" type="text" autofocus placeholder="Credit Card" data-omise="holder_name" name ="name" id = "name" style = "width:100%; height: 40px;">
+                </div>
+                <div class="text-left mb-5 px-4 flex flex-col">
+                    <label class = "mb-2 text-biddee-14">Credit Card</label>
+                    <input class = "width-input-2 text-biddee-16" type="text" data-omise="number" name ="credit_card" id = "credit_card" style = "width:100%; height: 40px;">
+                </div>
+                <div class="text-left mb-5 px-4 flex flex-col">
+                    <label class = "mb-2 text-biddee-14 required-dot">Expiration</label>
+                    <input class = "width-input-2 text-biddee-16" type="month" name ="expiration" id = "expiration" data-omise="expiration" style = "width:100%; height: 40px;" required>
+                </div>
+                <div class="text-left mb-5 px-4 flex flex-col">
+                    <label class = "mb-2 text-biddee-14">CVC (3 or 4 digit code)</label>
+                    <input class = "width-input-2 text-biddee-16" type="text" name ="cvc" data-omise="security_code"  id = "cvc" autofocus placeholder="CVC" style = "width:100%; height: 40px;">
+                </div>
+                <div class="text-left mb-5 px-4 flex flex-col">
+                    <label class = "mb-2 text-biddee-14">Zip or Postal Code</label>
+                    <input class = "width-input-2 text-biddee-16" type="text" name ="zip"  id = "zip" autofocus placeholder="Zip or Postal Code" style = "width:100%; height: 40px;">
+                </div>
+                <div class="text-left mb-5 px-4 flex flex-col">
+                    <label class = "mb-2 text-biddee-14">Phone Number</label>
+                    <input class = "width-input-2 text-biddee-16" type="text" name="phone" id = "phone" autofocus placeholder="Phone number" style = "width:100%; height: 40px;">
+                </div>
+                <div class="text-left mb-5 px-4">
+                    <button class = "btn-register text-biddee-14" type="submit">Register Now</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- end content -->
+
+    <!-- Footage -->
+    
+    <%- include('./extra-views/footer.ejs') %>
+
+
+    <script type="text/javascript" src="https://cdn.omise.co/omise.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script type="text/javascript">
+        Omise.setPublicKey("pkey_test_5rgw8tgffpcl46dc6hu");
+        $("#registerBid").submit( async function () {
+
+        var form = $(this);
+
+        // Disable the submit button to avoid repeated click.
+        form.find("input[type=submit]").prop("disabled", true);
+
+        // Serialize the form fields into a valid card object.
+        var card = {
+        "name": form.find("[data-omise=holder_name]").val(),
+        "number": form.find("[data-omise=number]").val(),
+        "expiration_month": form.find("[data-omise=expiration]").val().substring(5,7),
+        "expiration_year": form.find("[data-omise=expiration]").val().substring(0,4),
+        "security_code": form.find("[data-omise=security_code]").val()
+        };
+
+        // Send a request to create a token then trigger the callback function once
+        // a response is received from Omise.
+        //
+        // Note that the response could be an error and this needs to be handled within
+        // the callback.
+        var message_text ;
+        // console.log('hee')
+        Omise.createToken("card", card, function (statusCode, response) {
+        if (response.object == "error" || !response.card.security_code_check) {
+            // Display an error message.
+            message_text = "SET YOUR SECURITY CODE CHECK FAILED MESSAGE";
+            if(response.object == "error") {
+            message_text = response.message;
+            }
+            
+            // var txtError = "";
+            // var MyArray = message_text.split(", ");
+            // for(var i = 0; i < MyArray.length; i++){
+            //     txtError += MyArray[i] + "\n";
+            // }
+            // console.log(txtError);
+            // $("#token_errors").html(txtError);
+            $("#token_errors").html(message_text);
+            alert(message_text);
+
+            // Re-enable the submit button.
+            form.find("input[type=submit]").prop("disabled", false);
+        } else {
+            // Then fill the omise_token.
+            form.find("[name=omise_token]").val(response.id);
+
+            // Remove card number from form before submiting to server.
+            form.find("[data-omise=number]").val("");
+            form.find("[data-omise=security_code]").val("");
+            form.find("[data-omise=expiration]").val("");
+
+             
+            // submit token to server.
+            form.get(0).submit();
+        };
+    });
+    
+    // Prevent the form from being submitted;
+    return false;
+    
+});
+
+ var form = document.getElementById('registerBid')
+ form.addEventListener('submit', registerBid)
+
+ async function registerBid(event){
+     event.preventDefault();
+
+     
+     const name = document.getElementById('name').value;
+            const zip = document.getElementById('zip').value;
+            const phone = document.getElementById('phone').value;
+            const omise_token = document.getElementById('omise_token').value;
+            // console.log(omise_token)
+            const result = await fetch('/register-bid', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name,
+                    zip,
+                    phone,
+                    omise_token
+                    
+                })
+            }).then((res) => res.json())
+            // console.log('hee')
+        
+            if (result.status === 'ok') {
+                // everythign went fine
+                alert('Success')
+                window.location.href = '/';
+                
+            } else {
+                // alert(result.error)
+                // window.location.href = "http://biddee.ddns.net:9000";
+            }
+        }
+            </script>
+            <script src="../onClick.js"></script>
+</body>
+</html>

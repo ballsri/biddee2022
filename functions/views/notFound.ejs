@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <link rel="stylesheet" href="../index.css">
+    <!-- <link rel="stylesheet" href="styleswup.css"> -->
+    <title><%= title %> | Bid dee</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../Assets/img/biddee_icon.png" />
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="../onClick.js"></script>
+</head>
+<body class = "bg-home font-biddee">
+    <!-- nav-bar -->
+    <% if( user == ''){ %>
+        <%-include('./extra-views/navLogin.ejs')%>
+
+    <%} else {%>
+        <%-include('./extra-views/navUser.ejs')%>
+    <%}
+    %>
+
+    <!-- content -->
+    <div class = "py-2" style = "background-color: rgb(206,32,38);"></div>
+    <div class="bg-white">
+        <div class="container-70">
+            <div class = "text-center text-biddee-28 letter-space-05 pt-20 pb-10">Error : 404 Not found</div>
+        
+        </div>
+    </div>
+    <!-- end content -->
+
+    <!-- Footage -->
+  <%- include('./extra-views/footer.ejs') %>
+  
+</body>
+</html>

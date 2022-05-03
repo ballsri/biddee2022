@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <link rel="stylesheet" href="../index.css">
+    <link rel="stylesheet" href="../stylews.css">
+    <!-- <link rel="stylesheet" href="styleswup.css"> -->
+    <title><%= title %> | Bid dee</title>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    
+    <link rel="shortcut icon" type="image/x-icon" href="../Assets/img/biddee_icon.png" />
+</head>
+<body class = "bg-white font-biddee">
+    <!-- navbar -->
+   <!-- nav-bar -->
+   <% if( user == ''){ %>
+    <%-include('./extra-views/navLogin.ejs')%>
+
+<%} else {%>
+    <%-include('./extra-views/navUser.ejs')%>
+<%}
+%>
+  <!-- end nav -->
+  <ion-icon class = "text-3xl" name="chevron-up-circle-outline" onclick="topFunction()" id="myBtn" title="Go to top"></ion-icon>
+  <div class="sidebar close showlargesize">
+    <ul class="nav-links smallhide">
+        <li>
+            <a href="#about" class = "flex justify-center box-size50">
+                <ion-icon class = "text-2xl text-white" name="home-outline"></ion-icon>
+            </a>
+            <ul class="sub-menu blank">
+                <li><a class="link_name" >About Us</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#buycar" class = "flex justify-center box-size50">
+                <ion-icon class = "text-2xl text-white" name="car-outline"></ion-icon>
+            </a>
+            <ul class="sub-menu blank">
+                <li><a class="link_name" >Buying a car</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#sellcar" class = "flex justify-center box-size50">
+                <ion-icon class = "text-2xl text-white" name="cash-outline"></ion-icon>
+            </a>
+            <ul class="sub-menu blank">
+                <li><a class="link_name" >Selling a car</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#final" class = "flex justify-center box-size50">
+                <ion-icon class = "text-2xl text-white" name="card-outline"></ion-icon>
+            </a>
+            <ul class="sub-menu blank">
+                <li><a class="link_name" >Finalising the Sale</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#buyfaq" class = "flex justify-center box-size50">
+                <ion-icon class = "text-2xl text-white" name="wallet-outline"></ion-icon>
+            </a>
+            <ul class="sub-menu blank">
+                <li><a class="link_name" >Buyer FAQ</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#sellfaq" class = "flex justify-center box-size50">
+                <ion-icon class = "text-2xl text-white" name="briefcase-outline"></ion-icon>
+            </a>
+            <ul class="sub-menu blank">
+                <li><a class="link_name" >Seller FAQ</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#signfaq" class = "flex justify-center box-size50">
+                <ion-icon class = "text-2xl text-white" name="person-outline"></ion-icon>
+            </a>
+            <ul class="sub-menu blank">
+                <li><a class="link_name" >Sign in FAQ</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#service" class = "flex justify-center box-size50">
+                <ion-icon class = "text-2xl text-white" name="cog-outline"></ion-icon>
+            </a>
+            <ul class="sub-menu blank">
+                <li><a class="link_name" >Service</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<!-- nav-air -->
+<div class="sb showsmallsize">
+    <div class = "flex flex-col items-center">
+        <a class = "text-white flex items-center justify-center box-sb" href="#about">
+            <div class=  "flex">
+                <ion-icon class = "text-2xl mr-2" name="home-outline"></ion-icon>
+            </div>
+            <span class = "text-xl">About Us</span>
+        </a>
+        <a class = "text-white flex items-center justify-center box-sb" href="#buycar">
+            <div class=  "flex">
+                <ion-icon class = "text-2xl mr-2" name="car-outline"></ion-icon>
+            </div>
+            <span class = "text-xl">Buying a car</span>
+        </a>
+        <a class = "text-white flex items-center justify-center box-sb" href="#sellcar">
+            <div class=  "flex">
+                <ion-icon class = "text-2xl mr-2" name="cash-outline"></ion-icon>
+            </div>
+            <span class = "text-xl">Selling a car</span>
+        </a>
+        <a class = "text-white flex items-center justify-center box-sb" href="#final">
+            <div class=  "flex">
+                <ion-icon class = "text-2xl mr-2" name="card-outline"></ion-icon>
+            </div>
+            <span class = "text-xl">Finalising the Sale</span>
+        </a>
+        <a class = "text-white flex items-center justify-center box-sb" href="#buyfaq">
+            <div class=  "flex">
+                <ion-icon class = "text-2xl mr-2" name="wallet-outline"></ion-icon>
+            </div>
+            <span class = "text-xl">Buyer FAQ</span>
+        </a>
+        <a class = "text-white flex items-center justify-center box-sb" href="#sellfaq">
+            <div class=  "flex">
+                <ion-icon class = "text-2xl mr-2" name="briefcase-outline"></ion-icon>
+            </div>
+            <span class = "text-xl">Seller FAQ</span>
+        </a>
+        <a class = "text-white flex items-center justify-center box-sb" href="#signfaq">
+            <div class=  "flex">
+                <ion-icon class = "text-2xl mr-2" name="person-outline"></ion-icon>
+            </div>
+            <span class = "text-xl">Sign in FAQ </span>
+        </a>
+        <a class = "text-white flex items-center justify-center box-sb" href="#service">
+            <div class=  "flex">
+                <ion-icon class = "text-2xl mr-2" name="cog-outline"></ion-icon>
+            </div>
+            <span class = "text-xl">Service</span>
+        </a>
+    </div>
+    
+  </div>
+  <!-- content -->
+  <div class="py-2" style="background-color: rgb(206, 32, 38)"></div>
+
+    
+    <div class="text-center text-biddee-28 letter-space-05 mt-10" id="about">About Us</div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            ตลอดหลายปีที่ผ่านมา กลุ่มคนในประเทศไทย ไม่ว่าจะเป็นนักสะสม นักลงทุน หรือ
+            ผู้คนทั่วไป ได้เริ่มเข้ามาสนใจและอยู่ในตลาดของรถ คลาสสิก และ รถหายาก
+            เนื่องจากความสวยงามและสเนห์ ไม่ว่าจะจากรูปลักษณ์ภายนอกและภายใน
+            หรือกลไกที่น่าหลงไหลของรถเหล่านั้น
+            จึงทำให้มูลค่าของรถเหล่านี้เพิ่มขึ้นอย่างมากตลอดทศวรรษที่ผ่านมา
+            แต่เป็นที่น่าเสียดายที่รถเหล่านี้นั้นมีอยู่กระจัดกระจายทั่วประเทศไทย
+            ทำให้ผู้ที่มีรถและผู้ที่อยากได้นั้นติดต่อกันได้ยาก Bid Dee
+            ถูกออกแบบขึ้นมาเพื่อตอบสนองความต้องการของเหล่านักสะสมหรือผู้ที่สนใจอยากได้และผู้ที่อยากขายรถประเภทนี้มาเจอกัน
+            พวกเราเป็น
+            แพลตฟอร์มการประมูลรถยนต์มือสองที่ไม่ได้มีขายตามเต็นท์รถยนต์ทั่วไปที่แรกและที่เดียวในประเทศไทย
+            นี่คือข้อดีและสิทธิพิเศษที่ครอบครัว Bid Dee จะได้รับจากเรา
+            ความปลอดภัยที่สูง -
+            เราเชื่อว่าความปลอดภัยทางด้านประวัติของทั้งรถยนต์และผู้ซื้อผู้ขายนั้นสำคัญมาก
+            เราจึงมีบริการตรวจเช็คประวัติทางด้านอุบัติเหตุและอาชญากรรม
+            ค่าธรรมเนียมที่ต่ำ -
+            ผู้ที่จะนำรถยนต์มาขายกับเราสามารถมาลงได้ฟรีโดยไม่มีค่าบริการใดๆ
+            และค่าธรรมเนียมของผู้ซื้อจะเป็น 5% จากราคาการชนะประมูล บริการหลังการขาย
+            - ไม่ว่าจะเป็นการติดต่ออู่รถยนต์คุณภาพรวมทั้งมอบส่วนรถให้ หรือ บริการ
+            ล้างดูแลรถ การหา Finance - โดยทั่วไปแล้ว
+            การจะซื้อรถประเภทนี้คันหนึ่งการจัดการ finance
+            เรียกว่าเป็นอะไรที่แทบจะเป็นไปไม่ได้เลย แต่เนื่องจากเรามี partner
+            กับบริษัททางการเงินที่ดี เราจึง มีบริการจัดการ finance เพื่อสมาชิก Bid
+            Dee โดยเฉพาะ ความสะดวก -
+            ทั้งผู้ซื้อและผู้ขายจะได้รับความสะดวกสบายอย่างแน่นอนจากบริการต่างๆของ
+            Bid Dee เนื่องจากการใช้งานที่ง่ายของตัวเว็ปไซต์
+        </div>
+    </div>
+    <div class="mb-10" ></div>
+    <div class="text-center text-biddee-28 letter-space-05">
+        How it works
+    </div>
+    <div class="text-center text-biddee-18 letter-space-05 mt-5" id="buycar">
+        Buying a car
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            1. ลงทะเบียน
+            ผู้ซื้อจะต้องทำการลงทะเบียนเพื่อประมูลต้องการกรอกประวัติส่วนตัวข้อมูล
+            บัตรเครดิตเเละหมายเลขโทรศัพท์ที่ถูกต้องก่อน
+            ผู้ชนะการประมูลจะจ่ายค่าธรรมเนียมผู้ซื้อให้กับBid Dee 5%
+            จากยอดประมูลที่ชนะ
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            2. ดำเนินการตรวจสอบสถานะ
+            ในขณะที่เราได้พยายามทำให้ประมูลรถทางออนไลน์มีความปลอดภัยเเละง่ายที่สุดเท่าที่จะเป็นไปได้ท้ายที่สุดเเล้ว
+            ถือเป็นความรับผิดชอบของคุณที่จะต้องตรวจสอบวิเคราะห์สถานะของคุณเอง
+            เเละตรวจสอบให้เเน่ใจวาสรถที่คุณกำลังพิจารณารั้รเหมาะสมสำหรับคุณ
+            ก่อนที่จะทำการประมูล
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            3. จัดFinance เพื่อให้การทำธุรกรรมเป็นไปอย่างราบรื่น ทางBid
+            ได้ร่วมมือกับfinance organization
+            เพื่อให้การจัดหาเงินทุนที่ง่ายและรวดเร็วสำหรับผู้ใช้ที่มีเครดิตดีถึงดีเยี่ยม
+            คุณสามารถตรวจสอบอัตราและการชำระเงิน - และสมัครสินเชื่อ -
+            โดยตรงจากการประมูลแต่ละครั้ง! การจัดหาเงินทุนของfinance organization
+            ไม่ได้ผูกติดอยู่กับยานพาหนะใดโดยเฉพาะ
+            และคุณสามารถรับเงินกู้และเงินที่ฝากเข้าบัญชีของคุณได้ทันทีที่สมัครในวันเดียวกัน
+            เพื่อเป็นการเตือนความจำ หากคุณวางแผนที่จะจัดหาเงินทุนสำหรับการซื้อนี้
+            ให้ทำงานร่วมกับผู้ให้กู้ของคุณเพื่อขออนุมัติทางการเงินล่วงหน้าและจำไว้ว่าผู้ให้กู้บางรายอาจต้องการข้อมูลยานพาหนะที่เฉพาะเจาะจงและอาจมีข้อจำกัดด้านปีและระยะทางหารือเกี่ยวกับระยะเวลาในการขนส่งและการจัดเก็บถ้ามี)
+            กับผู้ขาย
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            4. การประมูล ​​เมื่อคุณเสนอราคา
+            เราจะระงับค่าธรรมเนียมของผู้ซื้อในบัตรเครดิตของคุณ หากคุณชนะ
+            บัตรของคุณจะถูกเรียกเก็บเงินและคุณจะจ่ายเงินให้ผู้ขายโดยตรงสำหรับยานพาหนะ
+            มิฉะนั้น การระงับจะถูกยกเลิกเมื่อสิ้นสุดการประมูล การประมูลมีผลผูกพัน
+            ดังนั้นให้เสนอราคาเฉพาะในกรณีที่คุณตั้งใจที่จะซื้อรถอย่างเต็มที่และคุณได้ดำเนินการตรวจสอบสถานะที่จำเป็นแล้ว
+            เนื่องจากคุณอาจลงเอยด้วยการเป็นผู้เสนอราคาสูงและจะไม่มีการคืนเงิน
+            เพื่อให้แน่ใจว่าขั้นตอนการเสนอราคายุติธรรมสำหรับทุกคน
+            การเสนอราคาภายในนาทีสุดท้ายของการประมูลจะรีเซ็ตเวลาการประมูลที่เหลืออยู่กลับเป็น
+            1 นาที ซึ่งจะทำให้ผู้อื่นมีโอกาสเสนอราคาได้
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            5. การประมูล เมื่อคุณเสนอราคา
+            เราจะระงับค่าธรรมเนียมของผู้ซื้อในบัตรเครดิตของคุณ หากคุณชนะ
+            บัตรของคุณจะถูกเรียกเก็บเงินและคุณจะจ่ายเงินให้ผู้ขายโดยตรงสำหรับยานพาหนะ
+            มิฉะนั้น การระงับจะถูกยกเลิกเมื่อสิ้นสุดการประมูลการประมูลมีผลผูกพัน
+            ดังนั้นให้เสนอราคาเฉพาะในกรณีที่คุณตั้งใจที่จะซื้อรถอย่างเต็มที่และคุณได้ดำเนินการตรวจสอบสถานะที่จำเป็นแล้ว
+            เนื่องจากคุณอาจลงเอยด้วยการเป็นผู้เสนอราคาสูงและจะไม่มีการคืนเงิน
+            เพื่อให้แน่ใจว่าขั้นตอนการเสนอราคายุติธรรมสำหรับทุกคน
+            การเสนอราคาภายในนาทีสุดท้ายของการประมูลจะรีเซ็ตเวลาการประมูลที่เหลืออยู่กลับเป็น
+            1 นาที ซึ่งจะทำให้ผู้อื่นมีโอกาสเสนอราคาได้
+        </div>
+    </div>
+    <div id="sellcar" class="text-center text-biddee-18 letter-space-05 mt-5">
+        Selling a car
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            1. ลงทะเบียน
+            ผู้ขายจะต้องทำการลงทะเบียนเพื่อประมูลด้วยการกรอกประวัติส่วนตัวข้อมูลตามที่กำหนด
+            จากนั้นจึงกรอกข้อมูลของรถยนต์ และข้อมูล
+            เพื่อลงก่อนเราขอรายละเอียดบางอย่างเพิ่มเติม รวมถึง
+            รหัสตัวถังภาพถ่ายบางส่วน และคำอธิบายสั้นๆ เกี่ยวกับรถ
+            ผู้ขายสามารถเลือกได้ว่าต้องการตั้งราคาจองหรือต้องการขายรถโดยไม่มีการสำรอง
+            ราคาจองเป็นมูลค่าขั้นต่ำที่คุณจะยอมรับเพื่อขายรถของคุณ –
+            และแม้ว่าการประมูลสำรองอาจดูเหมือนเป็นทางเลือกที่น่าสนใจ
+            แต่ส่วนมากแล้วรถที่เสนอโดยไม่มีการจองจะได้รับการเสนอราคามากกว่า
+            และได้รับความสนใจมากกว่า หากผู้ขายเลือกการประมูลแบบจอง
+            เราจะขอแนะนำราคาจอง เป็นราคาตามสภาวะตลาด
+            ทางเราอาจจะขอตั้งเป็นขอราคาที่ต่ำกว่านั้นเพื่อตั้งในการประมูล
+            โดยราคาการเริ่มประมูลเราจะให้ผู้ขายเป็นคนเลือกเอง
+            ทีมประมูลที่มีประสบการณ์ของเราจะตรวจสอบสิ่งที่คุณส่งมาและอาจถามคำถามติดตามผล
+            เราจะพยายามอย่างเต็มที่เพื่อให้คำตอบแก่คุณภายในวันทำการ
+            ไม่ใช่รถทุกคันที่เหมาะสำหรับ Bid Dee
+            แต่เรายินดีเสมอที่คุณสละเวลาส่งรถของคุณให้เรา
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            2. เตรียมรายการของคุณ เมื่อการส่งข้อมูลของคุณได้รับการยอมรับ
+            เราต้องการข้อมูลเพิ่มเติมจากคุณ เช่น รูปภาพโดยละเอียด
+            บริการและประวัติการเป็นเจ้าของ ฯลฯ ไม่ต้องกังวล
+            เราพร้อมช่วยเหลือคุณตลอดกระบวนการ! ก่อนที่คุณจะสามารถลง ประมูลได้
+            รถของคุณต้องไม่อยู่ในรายการขายที่อื่น
+            ซึ่งหมายความว่าคุณจะต้องลบโฆษณาอื่นๆ สำหรับรถของคุณ
+            และคุณไม่สามารถรับข้อเสนอนอกการประมูลได้
+            ถ่ายภาพรถของคุณให้ดูดีเพื่อรับเงินสูงสุด
+            จ้างช่างภาพมืออาชีพหรืออ่านคู่มือภาพถ่ายของเราก่อนจะถ่ายรูปของคุณเอง
+            ขอแนะนำให้ถ่ายวิดีโอแบบเดินไปรอบๆ และสตาร์ทรถ -
+            เพียงแค่ถ่ายบนโทรศัพท์ของคุณในโหมดแนวนอนแล้วอัปโหลดไปยัง YouTube
+            และส่งมาให้เรา เตรียมตัวให้พร้อมสำหรับการประมูลที่น่าตื่นเต้น 7 วัน
+            และเตรียมพร้อมที่จะมีส่วนร่วมกับชุมชนและตอบคำถามที่เกิดขึ้น
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            3. ยืนยันความถูกต้อง หลังจากทำการส่งขอมูลทุกอย่างมาแล้ว
+            เมื่อรถของคุณพร้อมที่จะลงสู่ตลาดการประมูล
+            เราจะมีการแจ้งเตือนและให้คุนตรวจสอบความถูกต้องทุกอย่างของรถคุณและกดยินยอมเพื่อเริ่มการประมูล
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            4. เข้าร่วมการประมูล
+            การมีส่วนร่วมของผู้ขายอย่างทันท่วงทีและเป็นข้อดีในการประมูล เช่น
+            การตอบกลับความคิดเห็นและคำถาม
+            การให้รูปภาพหรือวิดีโอเพิ่มเติมตามความจำเป็น เป็นต้น
+            การมีส่วนร่วมของผู้ขายที่ดีจะส่งผลให้มีความสนใจเพิ่มขึ้น
+            มีผู้เสนอราคาเพิ่มขึ้น และราคาขายสุดท้ายที่สูงขึ้น
+            ผู้สนใจประมูลสามารถติดต่อคุณได้โดยตรงทางอีเมลโดยใช้ เมนู "ติดต่อผู้ขาย"
+            เพื่อให้พวกเขาสามารถกำหนดเวลาทดลองขับ ตรวจรับก่อนซื้อ (เสียค่าใช้จ่าย)
+            และถามคำถามเพิ่มเติมได้ เพลิดเพลินไปกับการประมูล –
+            การประมูลหลายครั้งของเราจบลงด้วยสงครามการประมูลที่น่าตื่นเต้น
+            เพราะฉนั้นเตรียมตัวให้พร้อม!
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            5. สิ้นสุดการประมูล เมื่อการประมูลของคุณสิ้นสุดลง
+            คุณจะได้รับข้อมูลติดต่อของผู้ซื้อและในทางกลับกันเพื่อสรุปรายละเอียดและสำเร็จการขายลง
+        </div>
+    </div>
+    <div id="final" class="text-center text-biddee-28 letter-space-05 mt-10">
+        Finalising the Sale
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            1. จัดmeetingให้ทั้งผู้ซื้อเเละผู้ขาย
+            ทางเราจะมีการจัดตั้ง​​ติดต่ออีกฝ่ายเพื่อแนะนำตัวเองทันทีที่การประมูลสิ้นสุดลงและอย่าลืมทำตัวสุภาพและคิดบวกเพื่อให้แน่ใจว่ากระบวนการจะดำเนินไปอย่างราบรื่นเราแนะนำให้ผู้ขายแสดงหลักฐานการเป็นเจ้าของให้กับผู้ซื้อ
+            โดยปกติแล้ว จะเป็นสำเนาหรือรูปภาพของชื่อและทะเบียน
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            2. การชำระเงินเเละเอกสาร
+            ผู้ซื้อจะต้องชำระค่ารถเต็มจำนวนภายในหนึ่งสัปดาห์หลังจากปิดการประมูลหากมีสินเชื่อค้างชำระในรถยนต์ผู้ซื้อและผู้ขายควรหารือกันถึงวิธีการชำระเงินและขั้นตอนถัดไปที่เฉพาะเจาะจงเพื่อให้ผู้ซื้อสามารถทำธุรกรรมได้อย่างปลอดภัยหากผู้ขายมีเงินที่จะจ่ายออกไป
+            ก็ควรดำเนินการโดยเร็วที่สุด
+            และแสดงหลักฐานจากผู้ให้กู้ว่าได้รับเงินแล้วหากผู้ขายไม่มีเงินผู้ซื้ออาจสามารถชำระยอดค้างชำระให้กับผู้ให้กู้โดยตรงจากนั้นจึงชำระราคาซื้อส่วนที่เหลือให้กับผู้ขายควรมีการสร้าง
+            Bill of Saleที่ถูกต้อง รวมถึงเงื่อนไขของธุรกรรม เพื่อลงนามโดยทั้งสองฝ่าย
+            เราขอแนะนำให้ตรวจสอบกับ DMV ของรัฐ
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            3. หลังชำระเงิน ทางBid
+            deeยังมีการบริการหลังการขายสุดพิเศษให้กับผู้ซื้ออีกด้วย ไม่ว่าจะเป็น car
+            care เเละ อู่ ที่ทางเราไปpartnerมา
+        </div>
+    </div>
+    <div class="text-center text-biddee-28 letter-space-05 mt-10">FAQ</div>
+    <div id="buyfaq" class="text-center text-biddee-18 letter-space-05 mt-5">Buyer FAQ</div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            1. ค่าธรรมเนียมสำหรับผู้ซื้อคืออะไร
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            ตอบ : นอกจากราคาที่ต้องจ่ายให้กับผู้ขายรถ
+            ผู้ซื้อต้องจ่ายค่าธรรมเนียมให้กับ Biddee เป็นจำนวน 5% ของราคารถยนต์
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">2. วิธีการลงทะเบียนเพื่อประมูล</div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            ตอบ : ในการลงทะเบียนเพื่อประมูลนั้น ให้ผู้ซื้อคลิกที่ไอคอน “Sign in”
+            ที่มุมขวาบน จากนั้นกรอกข้อมูลตามที่เว็บไซต์กำหนด
+            หลังจากสร้างชื่อและรหัสผ่านแล้ว
+            ผู้ซื้อจะได้รับแจ้งยืนยันที่อยู่อีเมลของคุณ
+            เมื่อลงทะเบียนเสร็จแล้วจึงสามารถเข้าประมูลได้
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">3. วิธีการประมูล</div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            ตอบ : ในการประมูล หลังจากผู้ซื้อได้ลงทะเบียนแล้ว
+            หลังจากคุณพบรถที่คุณต้องการประมูล การเสนอราคาการประมูลทำได้โดย คลิกไอคอน
+            “Place Bid” จากนั้นจึงเสนอราคาที่ผู้ซื้อต้องการประมูล
+            โดยราคาเสนอของผู้ซื้อนั้นต้องสูงกว่าราคาก่อนหน้านี้
+            ซึ่งจะขึ้นอยู่กับขั้นต่ำของการประมูล หลังจากผู้ซื้อยืนยันคำสั่งซื้อ
+            Biddee จะระงับเงินในของคุณจำนวน 5%
+            ของราคาการกระมูลของผู้ซื้อและจะตัดเงินจำนวนดังกล่าวหลังผู้ซื้อเป็นผู้ชนะการประมูล
+        </div>
+    </div>
+    <div class="flex justify-center text-biddee-14">
+        <div class="res-width3 b-word mt-5 text-biddee-14">4. การเพิ่มราคาเสนอทำงานอย่างไร</div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            ตอบ : การประมูลขั้นต่ำเริ่มตามที่ผู้ขายกำหนด และ
+            เสนอราคาเพิ่มจากราคาดังกล่าวอย่างน้อยครั้งละ 3,000 บาท
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">5. Biddee ใช้สกุลเงินอะไร</div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">ตอบ : ใช้สกุลเงินบาท (THB)</div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            6. ผู้ซื้อสามารถประมูลรถยนต์ได้หรือไม่หากอยู่นอกประเทศไทย
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            ตอบ : ได้ แต่อย่างไรก็ตาม ผู้ซื้อต้องชำระเงินกับผู้ขาย และ
+            ค่าธรรมเนียมกับ Biddee ทันที่ นอกจากนี้ค่าขนส่ง ค่าธรรมเนียมนำเข้า
+            และรายการอื่นๆ
+            ที่จำเป็นในการส่งออก/นำเข้ารถยนต์เป็นความรับผิดชอบของผู้ซื้อทั้งหมด
+            โปรดตรวจสอบอย่างละเอียดว่าผู้ซื้อได้รับทราบกฎเหล่านี้แล้ว
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            7. ผู้ซื้อสามารถติดต่อผู้ขายเป็นการส่วนตัวได้อย่างไร
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            ตอบ : ผู้ซื้อสามารถติดต่อกับผู้ขายเป็นการส่วนตัวได้ผ่านหน้ารายละเอียดของการประมูลของผู้ขาย เพียงคลิก
+            “ติดต่อผู้ขาย”
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            8. มีการใช้ proxy ในการประมูลหรือไม่
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            ตอบ : ไม่ ผู้ซื้อต้องป้อนราคาเสอนครั้งต่อไปให้ด้วยตนเอง โดยเมื่อผู้ซื้อป้อนราคารถเสร็จ
+            ราคาของรถจะเปลี่ยนไปตามนั้นโดนทันที เช่น ราคาเสนอในปัจจุบันคือ 100,000 บาท ผู้ซื้อป้อนราคาเสนอที่
+            120,000 บาท
+            ราคาเสนอในปัจจุบันจะไปที่ 120,000 บาท โดยทันที
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            9. ทำไม Biddee ถึงระงับเงินของผู้ซื้อในขณะการประมูล
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            ตอบ : Biddee จะระงับเงินจำนวน 5% ของราคาประมูลของผู้ประมูลเอาไว้ โดยเมื่อผู้ซื้อชนะการประมูล Biddee
+            จะทำการตัดเงินจำนวนดังกล่าว
+            แต่ถ้าหากว่าผู้ซื้อไม่ได้เป็นผู้ชนะการประมูลเงินจำนวนดังกล่าวจะถูกส่งกลับไปที่เดิม
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            10. ทำอย่างไรถ้าเงินผู้ซื้อมีไม่ถึง
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            ตอบ : ถ้าเกิดผู้ซื้อมีเงินไม่พอในการประมูลจะไม่สามารถประมูลต่อได้
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            11. เมื่อการประมูลเสร็จสิ้น ผู้ซื้อจะจัดการกับธุระกรรมให้เสร็จสิ้นได้อย่างไร
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            ตอบ :
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            12. ผู้ซื้อจะจัดการไฟแนนซืได้อย่างไร
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            ตอบ : Biddee ได้ร่วมมือกับ —- เพื่อเสนอทางเลือกทางการเงินที่ราบรื่นและรวดเร็ว
+            การบริการลูกค้าอันดีเยี่ยมทำให้การซื้อรถยนต์ผ่าน Biddee ง่ายยิ่งขึ้น
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            13. ผู้ซื้อจะรับรถได้อย่างไร
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            ตอบ : ค่าขนส่งเป็นความรับผิดชอบของผู้ซื้อ ดังนั้นแล้ว เราจึงแนะนำให้ติดต่อกับผู้ขายโดยละเอียด
+            ผู้ขายบางรายอาจยินดีเก็บรถใชไว้ชั่วขณะเพื่อให้ผู้ซื้อมีเวลาไปรับรถหรืออาจยินดีนำรถไปยังสถานที่
+            ใกล้เคียง โปรดทราบว่าการโอนกรรมสิทธิ์ หรืออย่างอื่น อาจใช้เวลาเพิ่มเติมเล็กน้อย หากมีข้อสงสัย
+            ให้ติดต่อผู้ขายและตรวจสอบเวลาที่เหมาะสมกับผู้ซื้อและผู้ขาย
+            เพื่ออำนวยความสะดวก Biddee ได้มีลิงก์ไปยังผู้จัดส่งสองถึงสามรายด้านล่าง
+            โปรดอย่าลืมพิจารณาค่าใช้จ่ายเหล่านี้ก่อนเสนอราคา
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            14. ผู้ซื้อจะจ่ายเงินให้กับผู้ขายอย่างปลอดภัยได้อย่างไร
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            ตอบ : เราแนะนำกสรโอนเงินผ่านธนาคาร
+            เราขอแนะนำให้ผู้ซื้อและผู้ขายปรึกษากันอย่างละเอียดเพื่อให้แน่ใจว่าทั้งคู่พอใจกับจังหวะเวลาและขั้นตอน
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            15. มีกฎที่ต้องปฏิบัติตามในความคิดเห็นหรือไม่?
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            ตอบ : ใช่! นอกเหนือจากกฎทั่วไป เช่น ภาษาและการโจมตีส่วนบุคคลแล้ว การสนทนาควรเน้นที่รถที่จะขาย
+            เพื่อให้มีความเป็นธรรมต่อผู้ขายและผู้ประมูล
+            เราต้องการให้แน่ใจว่าชุมชนยังคงเป็นสถานที่ที่เปิดกว้างและเป็นแง่บวกในการใช้เวลาร่วมกับผู้ที่ชื่นชอบ
+            รายการบางส่วนของสิ่งที่รู้สึกขุ่นเคือง (และจะถูกกลั่นกรองตามนั้น)
+            ได้แก่:
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word text-biddee-14">
+            1.ภาษาหยาบคาย
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word text-biddee-14">
+            2.การโจมตีส่วนบุคคล
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word text-biddee-14">
+            3.ความพยายามที่จะแบ่งปันข้อมูลติดต่อส่วนบุคคลของคุณสแปม
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word text-biddee-14">
+            4.ถามผู้ขายเรื่องเงินสำรอง
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word text-biddee-14">
+            5.เรียกราคาที่คุณคิดว่ารถจะขายได้
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word text-biddee-14">
+            6.รูปภาพหรือคำอธิบายที่ไม่เหมาะสมในโปรไฟล์ของคุณ
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word text-biddee-14">
+            7.เชื่อมต่อธุรกิจส่วนตัว เว็บไซต์ โซเชียลมีเดีย ฯลฯ
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word text-biddee-14">
+            8.เลี่ยงการสนทนาเกี่ยวกับยานพาหนะอื่นหรือหัวข้อที่ไม่เกี่ยวข้องกับยานพาหนะที่นำเสนอ
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word text-biddee-14">
+            9.การลิงก์ไปยังวิดีโอ/หน้าเว็บ/เนื้อหาที่ไม่เหมาะสม
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word text-biddee-14">
+            10.เชื่อมโยงไปยังโฆษณาขายรถอื่นๆ
+        </div>
+    </div>
+
+    <div id="sellfaq" class="text-center text-biddee-18 letter-space-05 mt-5">Seller FAQ</div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            1. ผู้ขายจะต้องเสียเงินในการลงทะเบียนหรือไม่
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            ตอบ : ผู้ขายไม่ต้องเสียเงินสักบาทในการลงขายรถกับเว็บไซต์เรา
+            และจะได้เงินเต็มจำนวนจากราคาที่ผู้ซื้อประมูลได้ไป
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">2. ทางผู้ใช้เว็บไซต์จะสามารถเลือกรถอย่างไร
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            ตอบ : เรามุ่งเน้นที่รถยนต์ รถสปอรต์คลาสสิก และเอสยูวีสุดเท่จากยุคสมัยใหม่ หากคุณต้องการขายรถเจ๋งๆ
+            จากทุกยุคสมัย
+            เราอาจสนใจที่จะลงประกาศขาย คำจำกัดความของคำว่า "เท่" ของเรามีตั้งแต่รถสปอร์ตแบบดั้งเดิม (Honda NSX,
+            Mercedes-Benz
+            SL, Chevrolet Corvette) ไปจนถึงรถยนต์ที่หาแทบจะไม่ได้ตามท้องถนน (1949 Wolsey, Alfa Romeo 156,
+            Mercedes-Benz W111)
+            ไปจนถึงรถสปอร์ตสมรรถนะสูง (Porsche Cayman R, Honda NSX, Nissan GTR, Porsche 911 ) ไปจนถึงรถบรรทุกและ SUV
+            พิเศษ
+            (Jeep Grand Wagoneer, Land Rover Defender, Porsche Cayenne) เราไม่ได้ลงรายการรถทุกคันที่เราเสนอ
+            แต่เราสนใจอย่างแน่นอนในการเสนอของคุณเพื่อดูว่ามันเหมาะสำหรับBid Dee
+
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">3. ผู้ขายจะลงขายรถได้อย่างไร
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            ตอบ : หากต้องการส่งรถเพื่อขาย ให้กดไปที่ลิงก์ "Sell a Car" ทางแถบด้านบนของเว็บไซต์ ในการขายรถของคุณ
+            คุณจะต้องให้ข้อมูลที่สำคัญบางอย่างแก่เรา เช่น ยี่ห้อ รุ่น ปี รหัสตัวถัง รูปถ่ายสองสามรูป
+            และรายละเอียดอื่นๆ
+            ที่เกี่ยวข้อง หากเราสนใจที่จะขายรถของคุณ เราจะติดต่อกลับหาคุณ
+            จากนั้นเราจะถามคำถามที่มีรายละเอียดเพิ่มเติมจากคุณ
+            เพื่อให้แน่ใจว่าคำอธิบายการประมูลของเราถูกต้อง
+
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">4. ผู้ลงขายจะต้องให้ข้อมูลอะไรกับเราบ้าง</div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            ตอบ : เราเริ่มต้นด้วยแค่พื้นฐาน: เราสามารถแจ้งให้คุณทราบได้ว่าเรายอมรับรถของคุณหรือไม่
+            หากคุณเพียงแค่บอกยี่ห้อ
+            รุ่น
+            ปี รหัสตัวถัง รูปภาพบางส่วน และรายละเอียดอื่นๆ บางส่วน หากเรารับรถของคุณโดยอิงจากข้อมูลนี้
+            เราจะต้องรวบรวมรายละเอียดเพิ่มเติม เราจะถามเกี่ยวกับประวัติของคุณเกี่ยวกับรถ คุณลักษณะ และรายการอื่นๆ
+            ที่ช่วยให้เราจัดทำรายการของเรา
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">5. ต้องถ่ายรูปรถออกมาอย่างไรให้ดูสวย น่าสนใจ
+            และสามารถผ่านเกณฑ์ได้</div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            ตอบ : เราต้องกล่าวไว้เลยภาพถ่ายมีความสำคัญสำหรับการประมูลที่ประสบความสำเร็จมากเพียงใด!
+            เมื่อคำนึงถึงสิ่งนี้
+            ไปที่หน้าการ”ถ่ายภาพ”ของเราเพื่อรับคำแนะนำและเคล็ดลับ ดาวน์โหลดคู่มือภาพถ่ายโดยละเอียด
+            หรือจะสามารถใช้บริการจ้างช่างภาพมืออาชีพมาถ่ายภาพรถของคุณ
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            6. ผู้ลงขายควรจะถ่ายวิดีโอของรถด้วยไหม
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            ตอบ : ควรจะต้องมีวิดีโอด้วย เราพบว่าการถ่ายวิดีโอที่มีรายละเอียดเกี่ยวกับสภาพภายนอก ภายใน
+            ห้องเครื่องยนต์
+            และการแสดงการสตาร์ทเครื่องยนต์และการวิ่ง ทำให้เกิดความสนใจอย่างแท้จริงและเพิ่มความมั่นใจให้กับผู้ซื้อ
+            สามารถแบ่งออกเป็นหลายวิดีโอหรือทั้งหมดในวิดีโอเดียว
+            เราแนะนำให้ถ่ายในโหมดแนวนอนโดยถือโทรศัพท์ในแนวนอน ไม่ใช่แนวตั้ง ต้องการตัวอย่าง? คลิ๊กที่นี่!!
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            7. ใครจะเป็นคนเขียนรายละเอียดของรถให้กับผู้ขาย?
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            ตอบ : หลังจากที่คุณให้ข้อมูลที่เกี่ยวข้องทั้งหมดเกี่ยวกับรถของคุณแล้ว
+            เราจะเขียนรายละเอียดการประมูลตามจริง
+            เราจะไม่เผยแพร่หากไม่ได้รับการอนุมัติจากคุณ
+            และเราพยายามอย่างเต็มที่เพื่อให้คำอธิบายการประมูลของเราเรียบง่าย
+            มีวัตถุประสงค์ และตรงไปตรงมา
+            โดยมุ่งเน้นที่รายละเอียดที่สำคัญที่สุดเท่านั้นเพื่อช่วยให้ผู้เสนอราคาตัดสินใจได้
+
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            8. ผู้ขายขอเลือกวันที่รถจะลงประมูลได้หรือไม่
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            ตอบ : แม้ว่าเราจะไม่ได้เสนอความสามารถในการกำหนดเวลาการประมูลของคุณได้อย่างแม่นยำ
+            แต่เราอนุญาตให้ผู้ขายของเรากำหนดการตั้งค่าได้ หากคุณต้องการวันที่เริ่มต้นที่แน่นอน
+            หรือหากคุณต้องการถ้าการประมูลของคุณไม่ได้เกิดขึ้นจริงในบางสัปดาห์ (เช่น
+            เนื่องจากเป็นวันหยุดหรือเดินทางไปทำธุรกิจ)
+            ให้แจ้งให้เราทราบและเราจะพยายามอย่างเต็มที่ เพื่อรองรับคุณ
+
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            9. การประมูลจะใช้เวลาทั้งหมดกี่วัน
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            ตอบ : การประมูลทั้งหมดใช้เวลา7วัน อย่างไรก็ตาม ระยะเวลาที่แน่นอนสามารถเปลี่ยนแปลงได้
+            นั่นเป็นเพราะว่าภายในนาทีสุดท้ายของการประมูล
+            การเสนอราคาใหม่แต่ละครั้งจะรีเซ็ตนาฬิกาการประมูลเหลืออีกหนึ่งนาที
+            ซึ่งเป็นการจำลองการประมูลแบบดั้งเดิม โดยที่การประมูลจะดำเนินต่อไปจนกว่าผู้เสนอราคาจะหยุด
+            แทนที่จะเป็นการประมูลออนไลน์บางรายการ ซึ่งจะสิ้นสุดในเวลาที่กำหนดและการประมูลในวินาทีสุดท้าย
+
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            10. หากมีข้อผิดพลาดในรูปภาพหรือข้อมูลของรถในขณะที่รถกำลังถูกประมูล จะสามารถแก้ไขได้หรือไม่
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            ตอบ : คุณไม่สามารถแก้ไขการประมูลได้ด้วยตัวเอง แต่ตลอดระยะเวลาของการประมูล คุณจะต้องติดต่อกับ Bid Dee
+            หากคุณต้องการแก้ไขการประมูล เพียงติดต่อและแจ้งให้เราทราบว่าคุณต้องเปลี่ยนแปลงอะไร
+            คุณยังสามารถแสดงความคิดเห็น
+            ซึ่งรวมถึงรูปภาพเพิ่มเติม และคุณสามารถตอบคำถามเพื่อช่วยปรับปรุงความชัดเจนของรายชื่อของคุณ
+
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            11. ผู้ลงขายจะต้องตอบคำถามในQ&Aอย่างไรระหว่างการประมูล
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            ตอบ : เราขอแนะนำอย่างยิ่งให้เป็นผู้มีส่วนร่วมอย่างแข็งขันในส่วนความคิดเห็น และเราขอให้คุณตอบคำถามใด ๆ
+            ที่ส่งมาในส่วนนี้ ในส่วนถามตอบการประมูลของคุณ หรือโดยตรงจากผู้ใช้ผ่านตัวเลือกติดต่อผู้ขาย
+            ผู้ขายที่มีส่วนร่วมอย่างแข็งขันจะประสบความสำเร็จมากที่สุด เช่นเคย
+            การคิดบวกและสร้างสรรค์กับคำตอบของคุณจะเพิ่มความมั่นใจจากผู้เสนอราคาที่มีศักยภาพเท่านั้น
+            พึงระลึกไว้เสมอว่าผู้ซื้อเป็นคนกระตือรือร้นในรถยนต์เช่นเดียวกับคุณ
+            และพวกเขาอาจจะไม่ถามเว้นแต่พวกเขาจะสนใจรถของคุณอย่างจริงจัง!
+
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            12. ทางผู้ขายสามารถตั้งราคาที่ต้องการจะประมูลจบไว้ได้หรือไม่
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            ตอบ : ได้ เราเสนอทางเลือกให้กับผู้ขายระหว่างการประมูลแบบ "จอง" และ "ไม่จอง" “การจอง”
+            คือราคาขั้นต่ำที่ผู้ขายยินดีรับรถ ซึ่งผู้ซื้อไม่ทราบในระหว่างการประมูล การประมูลแบบ “ไม่จอง”
+            ไม่มีราคาขั้นต่ำ
+            หมายความว่ารถจะขายตามจำนวนที่เสนอราคาสูง
+            หากคุณเลือกการประมูลจอง เราจะขอให้คุณแนะนำราคาจอง แต่เราอาจขอราคาที่ต่ำกว่าก่อนที่เราจะลงรายการขายรถ
+            หากเราไม่สามารถตกลงเรื่องราคาจองได้ และไม่มีความรู้สึกหนักใจ แน่นอน คุณมีอิสระที่จะขายรถที่อื่น
+            หากคุณตัดสินใจในภายหลังว่าต้องการปรับเงินสำรองของคุณ คุณสามารถลดทุนสำรองได้ทุกเมื่อในระหว่างการประมูล
+            เพียงคลิกไอคอน "สำรองที่ต่ำกว่า" ในหน้ารายการประมูลของคุณ และป้อนทุนสำรองใหม่ของคุณ แน่นอน
+            เราอนุญาตให้ผู้ขายใช้เครื่องมือนี้เพื่อลดราคาจองของพวกเขาเท่านั้น
+            ดังนั้นการสำรองใหม่ที่คุณป้อนจะต้องต่ำกว่าราคาจองปัจจุบันของคุณ
+
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            13. ทางผู้ลงขายสามารถเปิดเผยราคาที่ต้องการจะให้ประมูลจบได้หรือไม่
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            ตอบ : เราขอแนะนำว่าอย่าเปิดเผยข้อมูลสำรองของคุณ โดยเฉพาะอย่างยิ่งในความคิดเห็นสาธารณะหรือส่วนถาม & ตอบ
+            เราพบว่าการเปิดเผยราคาจองมักจะทำให้การเสนอราคาช้าลง โดยเฉพาะอย่างยิ่งเมื่อการประมูลใกล้หรือถึงมูลค่านั้น
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            14. ผู้ลงขายควรจะลองไปตกลงราคากับผู้ซื้อนอกรอบหรือไม่
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            ตอบ : ไม่ควร – รถที่อยู่ในรายการรถยนต์และการประมูลมีไว้เพื่อขายผ่านการประมูลเท่านั้น
+            หากผู้ซื้อหรือผู้ขายพยายามทำข้อตกลงเพื่อพยายามล้มล้างการประมูล เราจะแบนคุณจากเว็บไซต์อย่างถาวร
+            หากคุณต้องการซื้อรถด้วย Bid Dee เพียงเสนอราคาสูงสุดที่คุณยินดีจ่าย –
+            เป็นวิธีที่ดีที่สุดเพื่อให้แน่ใจว่าคุณจะได้รถที่คุณต้องการ
+
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            15. หากประมูลแล้วไม่ได้ราคาตามที่ผู้ลงขายตั้งเอาไว้จะต้องทำอย่างไร
+
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            ตอบ : หากราคาการประมูลนั้นไม่ถึงตามที่คุณกำหนดไว้ เราจะติดต่อคุณและผู้เสนอราคาสูงสุดในการประมูลของคุณ
+            และเราจะพยายามเจรจาราคาที่จะทำให้ทั้งสองฝ่ายพอใจ ถ้าเราบรรลุข้อตกลง เราจะใส่ผู้ขายและผู้ซื้อในการติดต่อ
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            16. ผู้ซื้อกับผู้ขายจะติดต่อเพื่อทำการจ่ายเงินอย่างไร
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            ตอบ : เมื่อการประมูลสิ้นสุดลง การทำธุรกรรมระหว่างผู้ซื้อและผู้ขายจะเสร็จสมบูรณ์ ทางBid Dee
+            จะให้ข้อมูลติดต่อของผู้ซื้อและผู้ขายซึ่งกันและกัน
+            และทั้งสองฝ่ายสามารถทำธุรกรรมให้เสร็จสิ้นผ่านทางอีเมลหรือโทรศัพท์
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            17. วิธีจ่ายเงินแบบไหนปลอดภัยสำหรับทั้ง2ฝ่ายมากที่สุด
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            ตอบ : โดยทั่วไป Bid Dee
+            แนะนำให้ใช้การโอนเงินผ่านธนาคารและแคชเชียร์เช็คว่าเป็นรูปแบบการชำระเงินที่ปลอดภัยที่สุด
+            แม้ว่าธุรกรรมแต่ละรายการจะมีลักษณะเฉพาะและกลยุทธ์อื่นๆ อาจเหมาะกับคุณมากกว่า หากผู้ซื้ออยู่ในพื้นที่
+            เช่น
+            การประชุมที่สาขาของธนาคารในพื้นที่เพื่อร่างแคชเชียร์เช็ค ถอนเงินโดยตรง
+            หรือถ้าผู้ซื้อเผู้ขายอยู่ในกรุงเทพและปริมณฑลทางเราก็ยินดีให้ทั้ง2ฝ่ายมาชำระเงินรับรถกันที่ออฟิศของBid
+            Deeได้โดยที่จะมีเจ้าหน้าที่ของเราคอยอำนวยความสะดวก
+            หรือดำเนินการโอนเงินทางอิเล็กทรอนิกส์ให้เสร็จสมบูรณ์ก็เป็นแนวทางปฏิบัติทั่วไปเช่นกัน ในแต่ละกรณีเหล่านี้
+            โปรดดำเนินการตรวจสอบสถานะของคุณ ซึ่งอาจรวมถึงการตรวจสอบแคชเชียร์เช็คกับธนาคารของคุณ
+            หรือรอจนกว่าจะได้รับเงินก่อนที่จะลงนามในชื่อ
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            18. ผู้ลงขายจะต้องเตรียมตัวอย่างไรในการลงประมูล
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            ตอบ :
+            เราแนะนำให้ศึกษาลำดับเวลาและขั้นตอนสำหรับการโอนกรรมสิทธิ์ก่อนการประมูลเพื่อให้แน่ใจว่าคุณทราบขั้นตอนการขายที่เหมาะสม
+            โปรดทราบว่าผู้ซื้อที่มีศักยภาพควรติดต่อเพื่อหารือเกี่ยวกับการจัด
+            เตรียมหลังการขาย ในกรณีที่พวกเขาเป็นผู้เสนอราคาสูงสุด โปรดมีส่วนร่วมกับพวกเขาเพื่อพัฒนาแผนที่เหมาะสม
+            และตรงไปตรงมาเกี่ยวกับความคาดหวังของคุณ! หากมีสินเชื่อรถยนต์
+            โปรดศึกษาขั้นตอนที่จำเป็นในการชำระคืนเงินกู้และโอนกรรมสิทธิ์ และเตรียมแผนที่จะดำเนินการเมื่อปิดการประมูล
+            –
+            ยิ่งคุณเตรียมพร้อมมากเท่าใด คุณก็จะสามารถมีประสิทธิภาพมากขึ้นเท่านั้น
+
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            19. จำเป็นต้องมีบิลขายหรือไม่?
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            ตอบ : ทางเราแนะนำให้จัดทำ Bill of Sale ที่อธิบายยี่ห้อ/รุ่น/VIN ของรถที่ขาย ราคาซื้อ
+            และเงื่อนไขการทำธุรกรรม (เช่น
+            วันที่) หากมีรายการเพิ่มเติมมากับรถ ฯลฯ ทั้งผู้ซื้อและผู้ขายควรลงนามและลงวันที่ใน Bill of Sale
+            และแต่ละฝ่ายควรเก็บสำเนาไว้เป็นหลักฐาน
+            เว็บไซต์ DMV ของรัฐของคุณอาจมีเทมเพลตบิลขายยานพาหนะ 22.จะเกิดอะไรขึ้นหากผู้ชนะการประมูลไม่ดำเนินการซื้อ?
+            ตอบ: ไม่ใช่เรื่องแปลกที่ผู้ชนะการประมูลจะล้มเหลวในการติดตามรถยนต์และการเสนอราคา ในกรณีที่เกิดขึ้นไม่ปกติ
+            ผู้ชนะการประมูลจะเสียค่าธรรมเนียมผู้ซื้อ 4.5% และจะถูกแบนจาก เว็ปของเรา อย่างถาวร
+            หากผู้ซื้อของคุณไม่ปฏิบัติตาม
+            ทางเราจะทำงานร่วมกับผู้เสนอราคาสูงสุดรายถัดไปในทันทีเพื่อพยายามขายรถของคุณลูกค้าในราคาที่ตกลงกันไว้
+            ในกรณีที่เราไม่สามารถตกลงกันได้
+            เราอาจเสนอให้จดทะเบียนรถของคุณใหม่โดยไม่เสียค่าใช้จ่าย
+            หรือเราจะจ่ายค่าธรรมเนียมผู้ซื้อที่เรียกเก็บครึ่งหนึ่งให้คุณหลังจาก 90 วัน
+
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            20. คุณให้การประมูลที่ผ่านมามีการตรวจสอบนานเท่าใด?
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            ตอบ :
+            ตรงกันข้ามกับคู่แข่งบางรายของเราเราให้การประมูลทั้งหมดเปิดให้ทุกคนได้เห็นโดยไม่คำนึงว่าผลลัพธ์จะเป็นเช่นไรเราทำสิ่งนี้เพราะเรารู้สึกว่าจำเป็นต้องโปร่งใสเพื่อสร้างความไว้วางใจ
+        </div>
+    </div>
+    <div id="signfaq" class="text-center text-biddee-18 letter-space-05 mt-5">Sign in FAQ</div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            1. ลูกค้าจะลงชื่อเข้าใช้ได้อย่างไร?
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            ตอบ : ลูกค้าสามารถลงชื่อเข้าใช้โดยใช้ที่อยู่อีเมลและรหัสผ่าน หรือลงชื่อเข้าใช้ (Google, Facebook หรือ
+            Apple)
+            เพียงคลิกปุ่ม "ลงทะเบียน" หรือ "ลงชื่อเข้าใช้" หากคุณเห็นหน้าจอลงชื่อสมัครใช้ ให้คลิกลิงก์
+            "ลงชื่อเข้าใช้ที่นี่"
+            เพื่อไปที่ลงชื่อเข้าใช้ คุณสามารถป้อนอีเมลและรหัสผ่านของคุณที่นั่น
+            หรือเลือกแพลตฟอร์มลงชื่อเข้าใช้ที่คุณเชื่อมโยงกับบัญชีของคุณ
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">2. ​​ทำไมคุณถึงต้องการที่อยู่อีเมลของลูกค้า?
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            ตอบ : ผู้ใช้ทุกคนต้องระบุที่อยู่อีเมล คุณจะได้รับการแจ้งเตือนการค้นหาที่บันทึกไว้
+            การสื่อสารจากทีมของเราเกี่ยวกับการประมูลหรือการประมูลของคุณ
+            และที่อยู่ที่จะแบ่งปันกับอีกฝ่ายหนึ่งเมื่อคุณชนะการประมูลหรือขายรถของคุณ
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            3. จะทำอย่างไรถ้าคุณลูกค้าลืมรหัสผ่าน?
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            ตอบ : คลิกปุ่ม "ลงทะเบียน" หรือ "ลงชื่อเข้าใช้" ที่ด้านบนขวาของหน้าจอ ที่ด้านล่างของหน้าจอ ให้คลิกที่
+            “ลืมรหัสผ่าน?” ลิงค์ ป้อนที่อยู่อีเมลของบัญชีของคุณ
+            แล้วทางเราจะส่งลิงก์เพื่อตั้งรหัสผ่านใหม่ให้คุณทางอีเมลตรวจสอบให้แน่ใจว่าคุณมีสิทธิ์เข้าถึงบัญชีอีเมล
+            เนื่องจากลิงก์นี้จะหมดอายุภายใน 24 ชั่วโมงหลังจากที่เราส่งให้คุณ
+
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">4. เข้าสู่ระบบผ่านแพลตฟอร์ม Sign On
+            เหตุใดคุณจึงต้องใช้รหัสผ่านของลูกค้า?
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            ตอบ : หากคุณมีบัญชีที่มีอีเมลและรหัสผ่านอยู่แล้ว ทางเราต้องการให้คุณป้อนรหัสผ่านเพื่อเชื่อมโยงบัญชี
+            Google,
+            Facebook หรือ Apple กับการเข้าสู่ระบบของคุณ
+            คุณจะต้องทำเช่นนี้ในครั้งแรกที่คุณเข้าสู่ระบบผ่านผู้ให้บริการแต่ละราย
+            และจำเป็นสำหรับการรักษาความปลอดภัยของคุณ
+
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">5. ลูกค้าจะลงชื่อเข้าใช้ด้วย Google ได้อย่างไร?</div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">ตอบ : ลงชื่อเข้าใช้ Google โดยคลิกปุ่ม "ดำเนินการต่อด้วย
+            Google"
+            หากคุณมีบัญชี อยู่แล้ว ตรวจสอบให้แน่ใจว่าบัญชี Google
+            ของคุณมีที่อยู่อีเมลเดียวกันกับอีเมลที่คุณใช้สำหรับเข้าสู่ระบบ เวปของเรา คุณไม่สามารถเชื่อมโยงบัญชี
+            Google
+            กับบัญชีรถยนต์และการประมูลของคุณได้หากที่อยู่อีเมลไม่ตรงกัน</div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            6. ลูกค้าจะลงชื่อเข้าใช้ด้วย Facebook ได้อย่างไร?
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            ตอบ : ลงชื่อเข้าใช้ด้วย Facebook โดยคลิกปุ่ม "ดำเนินการต่อด้วย Facebook" หากคุณมีบัญชี อยู่แล้ว
+            ตรวจสอบให้แน่ใจว่าบัญชี Facebook ของคุณมีที่อยู่อีเมลเดียวกันกับอีเมลที่คุณใช้สำหรับเข้าสู่ระบบของเรา
+            คุณไม่สามารถเชื่อมโยงบัญชี Facebook กับบัญชีรถยนต์และการประมูลของคุณได้หากที่อยู่อีเมลไม่ตรงกัน
+            อย่าลืมแชร์ที่อยู่อีเมลของคุณกับ เว็ปของเรา เมื่อเข้าสู่ระบบผ่าน Facebook
+            เนื่องจากผู้ใช้ทุกคนต้องระบุที่อยู่อีเมล
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            7. ลูกค้าจะลงชื่อเข้าใช้ด้วย Apple ได้อย่างไร?
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            ตอบ : ลงชื่อเข้าใช้ด้วย Apple โดยคลิกปุ่ม "ดำเนินการต่อด้วย Apple" หากคุณมีบัญชี อยู่แล้ว
+            ตรวจสอบให้แน่ใจว่า Apple
+            ID ของคุณมีที่อยู่อีเมลเดียวกันกับอีเมลที่คุณใช้สำหรับเข้าสู่ระบบ ของเรา คุณไม่สามารถเชื่อมโยง Apple ID
+            กับบัญชีของคุณได้หากที่อยู่อีเมลไม่ตรงกัน อย่าลืมแชร์ที่อยู่อีเมลของคุณกับเว็บของเราเมื่อเข้าสู่ระบบผ่าน
+            Apple
+            เนื่องจากผู้ใช้ทุกคนต้องระบุที่อยู่อีเมล
+
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            8. ลูกค้าจะอัปเดต Apple เพื่อแชร์อีเมลของลูกค้าได้อย่างไร?
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            ตอบ : คุณสามารถเปลี่ยนการอนุญาตของ Apple ได้โดยการจัดการ Apple ID ของคุณ ไปที่ appleid.apple.com
+            แล้วเลือก
+            "ลงชื่อเข้าใช้ด้วย Apple" เลือกรถยนต์และการประมูล แล้วเลือก "หยุดใช้ลงชื่อเข้าใช้ด้วย Apple"
+            เมื่อคุณกลับมาที่
+            เว็ปของเราให้เข้าสู่ระบบผ่าน Apple อีกครั้ง เมื่อมีตัวเลือกให้เลือก "แชร์อีเมลของฉัน" และ Apple
+            จะให้ที่อยู่อีเมลของคุณแก่ เว็ปของเรา
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            9. ลูกค้าเข้าสู่ระบบผิดพลาด ใครสามารถช่วยลูกค้าได้บ้าง?
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="res-width3 b-word mt-5 text-biddee-14">
+            ตอบ : ไม่ต้องห่วง! ทางเราพร้อมให้ความช่วยเหลือ ติดต่อเราที่ เว็ปของเราได้เลย
+            และเราจะช่วยให้คุณบรรลุเป้าหมาย!
+        </div>
+    </div>
+    <!-- service -->
+    <div class="bg-white mx-auto pt-32 pb-20">
+        <div class="flex justify-center">
+            <div class="width-content-4">
+                <div id="service" class="text-center text-biddee-28 letter-space-05">
+                    WHICH SERVICE DO YOU NEED?
+                </div>
+            </div>
+        </div>
+        <div class="flex justify-center mt-5 md:mb-5">
+            <div class="width-content-4">
+                <div class="text-center text-biddee-16 letter-space-05">
+                    Bid Dee offers our lovely customers with these fascinating services.
+                    Do not hesitate for further information.
+                </div>
+            </div>
+        </div>
+        <div
+            class="container-70 md:flex flex-col md:flex-row justify-start md:justify-center items-center md:items-start">
+            <div class="mt-10 md:mt-5 md:mr-10 flex justify-center">
+                <div class="width-content-3">
+                    <img class="mx-auto"
+                        src="https://static.wixstatic.com/media/58352c_013d71c83f1e43539b4070f585377660~mv2.png/v1/fill/w_67,h_67,al_c,usm_0.66_1.00_0.01,enc_auto/2011863.png"
+                        alt="" />
+                    <div class="text-center text-biddee-18 mt-2">
+                        CRIMINAL RECORD CHECK
+                    </div>
+                    <div class="text-center mt-5 md:mt-10 text-biddee-14">
+                        In order to make sure sellers have no criminal background, we
+                        provide a record check for all sellers.
+                    </div>
+                </div>
+            </div>
+            <div class="md:mt-5 md:ml-5 md:mr-5 mt-10 md:mt-0 flex justify-center">
+                <div class="width-content-3">
+                    <img class="mx-auto"
+                        src="https://static.wixstatic.com/media/58352c_bb68e2bd3d9a41baae0d183e89463c91~mv2.png/v1/fill/w_71,h_71,al_c,usm_0.66_1.00_0.01,enc_auto/2211425.png"
+                        alt="" />
+                    <div class="text-center text-biddee-18 mt-2">
+                        CLEAR CAR IDENTITY & APPEARANCE
+                    </div>
+                    <div class="text-center mt-5 md:mt-10 text-biddee-14">
+                        Sellers have to take pictures of every parts of the car, both
+                        exterior and interior and also engine.
+                    </div>
+                </div>
+            </div>
+            <div class="md:mt-5 md:ml-10 mt-10 md:mt-0 flex justify-center">
+                <div class="width-content-3">
+                    <img class="mx-auto"
+                        src="https://static.wixstatic.com/media/58352c_63993e3cd0e2442db3c74fe6a0f6813d~mv2.png/v1/fill/w_71,h_71,al_c,usm_0.66_1.00_0.01,enc_auto/2317922.png"
+                        alt="" />
+                    <div class="text-center text-biddee-18 mt-2">PHOTOGRAPHER</div>
+                    <div class="text-center mt-5 md:mt-10 text-biddee-14">
+                        We have a team of professional photographer for sellers who wants
+                        to bring the best out of their cars.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div
+            class="container-70 md:flex flex-col md:flex-row justify-start md:justify-center items-center md:items-start">
+            <div class="md:mr-10 mt-10 flex justify-center">
+                <div class="width-content-3">
+                    <img class="mx-auto"
+                        src="https://static.wixstatic.com/media/58352c_734387a12eae4c36b5fc53423f585322~mv2.png/v1/fill/w_71,h_71,al_c,usm_0.66_1.00_0.01,enc_auto/2052357.png"
+                        alt="" />
+                    <div class="text-center text-biddee-18 mt-2">CAR CARE</div>
+                    <div class="text-center mt-5 md:mt-10 text-biddee-14">
+                        For our first time customers, we offer an amazing opportunity of a
+                        2-months car wash.
+                    </div>
+                </div>
+            </div>
+            <div class="md:mt-10 md:mr-5 md:ml-5 mt-10 md:mt-0 flex justify-center">
+                <div class="width-content-3">
+                    <img class="mx-auto"
+                        src="https://static.wixstatic.com/media/58352c_63406f787e0f462898c01d163bad9f64~mv2.png/v1/fill/w_67,h_67,al_c,usm_0.66_1.00_0.01,enc_auto/2942924.png"
+                        alt="" />
+                    <div class="text-center text-biddee-18 mt-2">DOCUMENT PROCESS</div>
+                    <div class="text-center mt-5 md:mt-10 text-biddee-14">
+                        After the auction, we offer a service of checking all the
+                        documentaries for both sellers and buyers to make sure that the
+                        car is ready to be transfer.
+                    </div>
+                </div>
+            </div>
+            <div class="md:mt-10 md:ml-10 mt-10 md:mt-0 flex justify-center">
+                <div class="width-content-3">
+                    <img class="mx-auto"
+                        src="https://static.wixstatic.com/media/58352c_afb5ae01919748afa94f7be14c9a870c~mv2.png/v1/fill/w_71,h_71,al_c,usm_0.66_1.00_0.01,enc_auto/3152103.png"
+                        alt="" />
+                    <div class="text-center text-biddee-18 mt-2">SPECIAL GARAGES</div>
+                    <div class="text-center mt-5 md:mt-10 text-biddee-14">
+                        As we are a good partner with Phuri's maintenance, we would like
+                        to offer our lovely customers a 20% discount for one year. Bid now
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  <!-- end content -->
+
+  <!-- Footage -->
+  <%- include('./extra-views/footer.ejs') %>
+  <script src="./onClick.js"></script>
+  <script src ="./navDown.js"></script>
+  <script>
+    let arrow = document.querySelectorAll(".arrow");
+    for (var i = 0; i < arrow.length; i++) {
+        arrow[i].addEventListener("click", (e) => {
+            let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
+            arrowParent.classList.toggle("showMenu");
+        });
+    }
+    let sidebar = document.querySelector(".sidebar");
+    let sidebarBtn = document.querySelector(".bx-menu");
+    console.log(sidebarBtn);
+
+    var mybutton = document.getElementById("myBtn");
+
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        mybutton.style.display = "block";
+      } else {
+        mybutton.style.display = "none";
+      }
+    }
+
+    function topFunction() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+  </script>
+</body>
+</html>

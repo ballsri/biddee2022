@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <link rel="stylesheet" href="../index.css">
+    <!-- <link rel="stylesheet" href="styleswup.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css">
+    <title><%= title %> | Bid dee</title>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js" ></script>
+
+    <script src="../newQuestion.js"></script>
+    <script src="../newAnswer.js"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="../Assets/img/biddee_icon.png" />
+</head>
+
+<body class="bg-white font-biddee ">
+    <!-- navbar -->
+    <% if( user == ''){ %>
+        <%-include('./extra-views/navLogin.ejs')%>
+
+        <%} else {%>
+        <%-include('./extra-views/navUser.ejs')%>
+    <%}
+    %>
+    <!-- end nav -->
+    <!-- modal -->
+    <div id="myModal" class="modal">
+        <span class="close-content">&times;</span>
+        <img class="modal-content" id = "imgtoshow">
+    </div>
+    <!-- end modal -->
+    <!-- content  -->
+    <div class="py-2" style="background-color: rgb(206,32,38);"></div>
+    <div id="page" style="visibility:hidden"class="container-detail" style="background-color: white">
+        <div class="text-biddee-28 pt-20 text-center text-car" style="font-weight: 300;">
+            <%= title+" "+ car.carProp.model %>
+        </div>
+        <div class="flex-detail2 flex-directdetail mt-10">
+            <div class="mr-0 md:mr-5 mb-10 md:mb-0 res-width-pic">
+                <div>
+                    <div class="slider-for ">
+                        <% car.arrayOfImage.forEach(img => { %>
+                            <div><img id="../<%= img.path %>" onclick="zoompic(this)" style = "max-width:500px;height:300px;object-fit: contain;" src="../<%= img.path %>" alt=""></div>
+                            <% });  %>
+                        </div>
+                    
+                        <div class="slider-nav mt-5">
+                        <% car.arrayOfImage.forEach(img => { %>
+                            <div><img style="width: 150px; height: 90px; object-fit: contain;" src="../<%= img.path %>" alt=""></div>           
+                        <% });  %>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-center margin-top-detail">
+                <div>
+                    <form id="bid" method="post" action="/bid">
+                        <input type="hidden" id="userId" value="<%= user._id %>">
+                        <input type="hidden" id="carId" value="<%= car._id %>">
+                        <input type="hidden" id="startTime" value="<%= car.startTime %>">
+                        <input type="hidden" id="startPrice" value="<%= Number(car.lastPrice)+Number(3000) %>">
+                        <ul class="res-width2">
+                            <li class="flex items-center justify-center md:justify-start">
+                                <div class="flex mr-5 flex-col md:flex-row items-center md:justify-center" style="border-radius: 0.50rem; background-color:  rgb(236, 59, 65);; padding: 0.5rem; color: white;">
+                                    <div class="mr-0 md:mr-10">
+                                        <ion-icon class="mr-1" name="time-outline"></ion-icon> Time Left: <span id="time"> </span>
+                                    </div>
+                                    <div>
+                                        <ion-icon class="mr-0 md:mr-1" name="card-outline"></ion-icon>
+                                        Highest Bid: <span id="lastPrice"><%=  Number(car.lastPrice).toLocaleString()%>
+                                        </div>
+                                </div>
+                                <% if(user._id != car.userId){ %>
+                                    <button id="bidbt" class = "font-bold" style="border-radius: 0.50rem; background-color: rgb(50, 228, 210); padding-top: 0.5rem; padding-bottom: 0.5rem; padding-left: 1rem; padding-right: 1rem;">Place Bid</button>
+                                    <%} else {%>
+                                        <button type="hidden" class = "font-bold" style="border-radius: 0.50rem; background-color: rgb(236, 59, 65); padding-top: 0.5rem; padding-bottom: 0.5rem; padding-left: 1rem; padding-right: 1rem;" disabled>Owner</button>
+                                        <button id="bidbt" type="hidden" class = "font-bold" style="display:none ;border-radius: 0.50rem; background-color: rgb(50, 228, 210); padding-top: 0.5rem; padding-bottom: 0.5rem; padding-left: 1rem; padding-right: 1rem;">Place Bid</button>
+                                    <%}%>
+                                </li>
+
+                                <input type="hidden" id="bidNum" value="<%= car.auction.length%>"/>
+                            <!-- <li class = "mt-2">- Bidder: </span></li> -->
+                            <li class="mt-2 flex justify-center">
+                                <div class="flex flex-row items-center res-width2" >
+                                    <% if(user._id != car.userId){ %>
+                                    <ion-icon name="remove-outline" class="text-2xl"
+                                    style="border: 1px solid black;border-right: 0px; padding: 0.6rem; background-color: rgba(0,0,0,1); color:white"id="subtract" onclick="subtract(this)"> </ion-icon>
+                                    <input value="<%= (Number(car.lastPrice)+Number(3000))%>" type="number" id="price"  min="<%= (Number(car.lastPrice)+Number(3000))%>" class = "text-center color-green-bid" style="width: 100%; padding: 0.5rem;border: 1px solid black;" >
+                                    <ion-icon name="add-outline" class="text-2xl"
+                                        style="border: 1px solid black;border-left: 0px; padding: 0.6rem; background-color: rgba(31, 99, 7, 1); color:white;" id="add" onclick="add(this)"></ion-icon>
+                                        <%} else {%>
+                                            <ion-icon   name="remove-outline" class="text-2xl"
+                                    style="border: 1px solid black;border-right: 0px; padding: 0.6rem;display:none ;"id="subtract" onclick="subtract(this)"> </ion-icon>
+                                    <input type="hidden" value="<%= (Number(car.lastPrice)+Number(3000))%>" type="number" id="price" step="1000" min="<%= (Number(car.lastPrice)+Number(3000))%>" class = "text-center" style="visibility:hidden; width:100%; padding: 0.5rem;border: 1px solid black;" >
+                                    <ion-icon  name="add-outline" class="text-2xl"
+                                        style="display:none ;border: 1px solid black;border-left: 0px; padding: 0.6rem;" id="add" onclick="add(this)"></ion-icon>
+                                        <%}%>
+                                </div>
+                            </li>
+                            <li class="text-biddee-14 font-thin mt-5 mb-5 flex justify-center">
+                                <div class = "res-width2 " style="overflow-y: scroll; height:250px; overflow-x: hidden;">
+                                    <table id="auctionList" style = "width: 100%;">
+                                        <thead>
+                                            <tr class="table-border">
+                                                <th class="b-word text-center width-1 py-2">No.</th>
+                                                <th class="b-word text-center width-3 py-2">Lastname</th>
+                                                <th class="b-word text-center width-2 py-2">Price</th>
+                                                <th class="b-word text-center width-2 py-2">Time</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% for(var i = car.auction.length-1; i >= 0; i--) { %>
+                                              <%if(i != car.auction.length-1){%>  
+                                                <tr class="table-border">
+                                                    <td class="b-word text-center py-2"> <%= i+1 %></td>
+                                                    <td class="b-word text-center py-2"><%= car.auction[i].lastname %></td>
+                                                    <td class="b-word text-center py-2 color-red-bid" id = "priceTable<%=car.auction[i].price%>"><%= Number(car.auction[i].price).toLocaleString() %></td>
+                                                    <td class="b-word text-center py-2 "><%= new Date(car.auction[i].time).toLocaleString('en-GB') %></td>
+                                                </tr>
+                                              <% }else{ %>
+                                              
+                                                <tr class="table-border">
+                                                    <td class="b-word text-center py-2"> <%= i+1 %></td>
+                                                    <td class="b-word text-center py-2"><%= car.auction[i].lastname %></td>
+                                                    <td class="b-word text-center py-2 color-green-bid" id = "priceTable<%=car.auction[i].price%>"><%= Number(car.auction[i].price).toLocaleString() %></td>
+                                                    <td class="b-word text-center py-2 "><%= new Date(car.auction[i].time).toLocaleString('en-GB') %></td>
+                                                </tr>
+                                              <% } %>
+                                            <% } %>
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="flex-detail2 flex-directdetail mt-10">
+            <div class="text-biddee-14 font-thin mr-0 md:mr-10 pt-5 flex justify-center res-width2">
+                <table style = "width: 100%;">
+                    <tr>
+                        <td class="b-word text-left py-2 px-2 table-border bg-home-detail font-bold" style = "max-width: 112px; min-width: 75px;">Make</td>
+                        <td class="b-word text-left py-2 px-2 table-border" style = "max-width: 112px; min-width: 75px;"> <%= car.carProp.make %></td>
+                        <td class="b-word text-left py-2 px-2 table-border bg-home-detail font-bold" style = "max-width: 112px; min-width: 75px;">Engine</td>
+                        <td class="b-word text-left py-2 px-2 table-border" style = "max-width: 112px; min-width: 75px;"><%= car.carProp.engineSize %></td>
+                    </tr>
+                    <tr>
+                        <td class="b-word text-left py-2 px-2 table-border bg-home-detail font-bold">Model</td>
+                        <td class="b-word text-left py-2 px-2 table-border"><%= car.carProp.model %></td>
+                        <td class="b-word text-left py-2 px-2 table-border bg-home-detail font-bold">Register Year</td>
+                        <td class="b-word text-left py-2 px-2 table-border"><%= car.carProp.regisYear %></td>
+                    </tr>
+                    <tr>
+                        <td class="b-word text-left py-2 px-2 table-border bg-home-detail font-bold">Milage</td>
+                        <td class="b-word text-left py-2 px-2 table-border">:<%= car.carProp.milage %></td>
+                        <td class="b-word text-left py-2 px-2 table-border bg-home-detail font-bold">Transmission</td>
+                        <td class="b-word text-left py-2 px-2 table-border"><%= car.carProp.transmission %></td>
+                    </tr>
+                    <tr>
+                        <td class="b-word text-left py-2 px-2 table-border bg-home-detail font-bold">VIN</td>
+                        <td class="b-word text-left py-2 px-2 table-border"><%= car.carProp.vinNumber %></td>
+                        <td class="b-word text-left py-2 px-2 table-border bg-home-detail font-bold">Year</td>
+                        <td class="b-word text-left py-2 px-2 table-border"> <%= car.carProp.year %></td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="b-word text-left py-2 px-2 table-border bg-home-detail font-bold">Location</td>
+                        <td class="b-word text-left py-2 px-2 table-border"><%= car.carProp.location %></td>
+                        <td class="b-word text-left py-2 px-2 table-border bg-home-detail font-bold">Modify Lists</td>
+                        <td class="b-word text-left py-2 px-2 table-border"><%= car.carProp.modifyList %></td>
+                    </tr>
+                    <tr>
+                        <td class="b-word text-left py-2 px-2 table-border bg-home-detail font-bold">Seller</td>
+                        <td class="b-word text-left py-2 px-2 table-border"><%= seller.firstname+" "+seller.lastname %></td>
+                        <td class="b-word text-left py-2 px-2 table-border bg-home-detail font-bold">Seller type</td>
+                        <td class="b-word text-left py-2 px-2 table-border">Private</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="res-width2 margin-top-detail">
+                <div class="text-biddee-32-normal mb-5">Description</div>
+                <div class="text-biddee-14"><%=car.carProp.description %></div>
+                
+            </div>
+        </div>
+        <div class="flex justify-center">
+            <div class="text-biddee-32-normal mb-10 mt-10">
+                Q&A
+            </div>
+        </div>
+        <div class = "container-70">
+            <section class="responsive slider">
+                <% QwithA.forEach( Q_A => { %>
+                    <div>
+                        <div class="max-w-sm rounded overflow-hidden shadow-lg" style = "background-color: #EBEBEB;">
+                            <div class="px-6 py-4">
+                                <div class="font-bold text-biddee-14 mb-2">User : <%= Q_A.username %></div>
+                                <div class="font-thin text-biddee-14 mb-5 ml-1"><span class = "font-bold">Q :</span> <%= Q_A.question %></div>
+                                <div class="font-bold text-biddee-14 mb-2">Seller : <%= seller.firstname+" "+seller.lastname %></div>
+                              <div class="font-thin text-biddee-14 mb-2 ml-1"><span class = "font-bold">A :</span><%= Q_A.answer %></div>
+                            </div>
+                        </div>
+                    </div>
+                    <%})%>
+                    <% QnoA.forEach( Q_A => { %>
+                    <div>
+                        <div class="max-w-sm rounded overflow-hidden shadow-lg" style = "background-color: #EBEBEB;">
+                            <div class="px-6 py-4">
+                              <div class="font-bold text-biddee-14 mb-2">User : <%= Q_A.username %></div>
+                              <div class="font-thin text-biddee-14 mb-5 ml-1"><span class = "font-bold">Q :</span> <%= Q_A.question %></div>
+                             <% if(String(seller._id) == String(user._id)){ %>
+                                
+                                <div class="font-thin text-biddee-14 mb-5" style = "height: 100px;width:100%;" name = "newAnswer<%= Q_A.id%>" id = "newAnswer<%= Q_A.id%>" action="/newAnswer" method="POST">
+                                    <input type="hidden" id="carID<%= Q_A._id%>" name = "carID<%= Q_A._id%>" value="<%= car._id %>">
+                                    <textarea class = "width-input" name="answer<%= Q_A._id%>" id="answer<%= Q_A._id%>" cols="30" rows="10" style = "resize: none;" placeholder required></textarea>
+                                    <div class="font-thin text-biddee-16 flex justify-end"><button type ="submit" onclick="newAnswer('<%=Q_A._id%>')" id = "replybtn<%= Q_A.id%>" style = "border: none; background-color: red; border-radius: 1.25rem; padding: 0.3rem; color: white;"> reply</button></div>
+                                </div>
+                            <%}%>
+                        </div>
+                        </div>
+                    </div>
+                    <%})%>
+                    <div>
+                        <div class="max-w-sm rounded overflow-hidden shadow-lg" style = "background-color: #EBEBEB;">
+                            <div class="px-6 py-4">
+                              <div class="font-bold text-biddee-14 mb-2">Ask something to seller</div>
+                              <div class="font-thin text-biddee-14 mb-5" style = "height: 100px;width:100%;" name = "newQuestion" id = "newQuestion" action="/newQuestion" method="POST">
+                                <input type="hidden" id="carID" name = "carID" value="<%= car._id %>">
+                                <textarea class = "width-input" name="question" id="question" cols="30" rows="10" style = "resize: none;" placeholder required></textarea>
+                                <div class="font-thin text-biddee-16 flex justify-end"><button id ="askbtn" onclick="newQuestion(this)" style = "border: none; background-color: red; border-radius: 1.25rem; padding: 0.3rem; color: white;"> Ask</button></div>
+                            </div>
+                              
+                        </div>
+                        </div>
+                    </div>
+                </section>
+        </div>
+    </div>
+    <!-- end content -->
+    <!-- Footage -->
+    <%- include('./extra-views/footer.ejs') %>
+    
+    <!-- <script src="bootbox.locales.min.js"></script> -->
+    <script src="../bid.js"></script>
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+    <script src="../auction_details.js"></script>
+    <script src="../onClick.js"></script>
+    <script>
+        var modal = document.getElementById("myModal");
+        var modalImg = document.getElementById("imgtoshow");
+        var captionText = document.getElementById("caption");
+        function zoompic(e){
+            modal.style.display = "block";
+            modalImg.src = e.src;
+        }
+
+        var span = document.getElementsByClassName("close-content")[0];
+        span.onclick = function() { 
+            modal.style.display = "none";
+        }   
+        window.onclick = function (event) {
+            if(!event.target.matches('#content-close') && event.target.matches('#myModal')) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+
+</html

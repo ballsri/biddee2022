@@ -1,0 +1,37 @@
+module.exports = function(){
+    const cron = require('node-cron');
+    const Car = require('../models/cars.js'),
+            User = require('../models/users');
+    
+    cron.schedule('*/30 * * * * *', function(){
+   
+        var query = Car.find({isExpired: false}, function(err, results) {
+
+            if(err){
+                console.log(err)
+                return
+            }
+            results.forEach( async function(element) {
+                // console.log(element.startTime.toUTCString())
+                var now = new Date().getTime();
+                var time = new Date(element.startTime).getTime();
+                if( time-now  <0){
+                    element.isExpired = true;
+                    if(element.auction.length>0) {
+
+                    
+                        var user = await User.findById(element.auction[element.auction.length-1].userId);
+                        user.carsWon.push(element._id);
+                        user.save();
+
+                    }
+                }
+                element.save()
+                // console.log(element)
+            });
+        });
+       
+        
+    });
+
+}

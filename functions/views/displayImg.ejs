@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    
+        <meta name = "viewport" content="width=devicewidth", initial-scale=1.0>
+        <meta charset="utf-8">
+        <title><%= title %> | Bid dee</title>
+        <link rel="short icon" href="/asset/favicon.ico">
+        <!-- <link rel="stylesheet" href="../login.css"> -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">   <!-- <link rel="preconnect" href="https://fonts.googleapis.com"> 
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+        <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap" rel="stylesheet"> -->
+        
+    </head>
+    <body>
+        <div class = "container">
+            
+            <!-- <img src="../Assets/img/biddee_icon.png" alt="Biddee Logo"> -->
+            
+            <% if(typeof carList != undefined){%>
+
+                   
+                   <% carList.forEach(function(element){ %>
+                        <h1>&nbsp;</h1>
+                        <h1>Car make: <%= element.carProp.make %></h1>
+                        <h1>Car model: <%= element.carProp.model %></h1>
+                        <h1>Image :</h1>
+                        <% element.arrayOfImage.forEach(function(img) { %>
+                            <img width="500" height="500" src="../<%= img.path %>">
+                        <%
+                        })
+                    })
+                } %>
+         
+            <button class="form__back" onclick="window.location.href='/auth/login';">Back to Home</button>
+        </div>
+      
+    </body>
+</html>

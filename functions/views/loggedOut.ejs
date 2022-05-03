@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    
+        <meta name = "viewport" content="width=devicewidth", initial-scale=1.0>
+        <meta charset="utf-8">
+        <title><%= title %> | Bid dee</title>
+        <link rel="short icon" href="/asset/favicon.ico">
+        <link rel="stylesheet" href="../login.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">   <!-- <link rel="preconnect" href="https://fonts.googleapis.com"> 
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+        <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap" rel="stylesheet"> -->
+        
+    </head>
+    <body>
+        <div class = "container">
+            
+            <h1 class = "form__tittle">Your account has been logged out</h1>
+            <button class="form__back" onclick="window.location.href='/auth/login';">Back to Login</button>
+            <button class="form__back" onclick="window.location.href='/';">Back to Home</button>
+        </div>
+        <script>
+            window.localStorage.removeItem('token');
+        </script>
+      
+    </body>
+</html>

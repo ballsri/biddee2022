@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <link rel="stylesheet" href="../index.css">
+    <!-- <link rel="stylesheet" href="styleswup.css"> -->
+    <title><%= title %> | Bid dee</title>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  
+    <link rel="shortcut icon" type="image/x-icon" href="../Assets/img/biddee_icon.png" />
+</head>
+<body class = "bg-home font-biddee">
+    <!-- nav-bar -->
+    <% if( user == ''){ %>
+        <%-include('./extra-views/navLogin.ejs')%>
+
+    <%} else {%>
+        <%-include('./extra-views/navUser.ejs')%>
+    <%}
+    %>
+
+    <!-- content -->
+    <div class = "py-2" style = "background-color: rgb(206,32,38);"></div>
+    <div class="bg-white">
+        <div class="container-70">
+            <div class = "text-center text-biddee-28 letter-space-05 pt-20 pb-10">CONTACT US !</div>
+        </div>
+        <div class="container-70 flex flex-col items-center justify-start md:flex-row md:justify-center md:items-start pb-20">
+            <div class="flex flex-col items-center md:items-start mr-0 md:mr-10">
+                <div class = "text-biddee-16 mb-5 text-center md:text-left">
+                    <div class = "text-red-600">Telephone</div>
+                    <div class = "mt-1 md:mt-0">Tel: 092-092-4416</div>
+                </div>
+                <div class = "text-biddee-16 mb-5 text-center md:text-left">
+                    <div class = "text-red-600">Email</div>
+                    <div class = "mt-1 md:mt-0">Bid.Dee2022@gmail.com</div>
+                </div>
+                <div class = "text-biddee-16 mb-5 text-center md:text-left">
+                    <div class = "text-red-600">Opening Hours</div>
+                    <div class = "mt-1 md:mt-0">Mon - Fri: 10am - 6pm</div>
+                </div>
+                <div class = "text-biddee-16 text-center md:text-left">
+                    <div class = "text-red-600">Our Office</div>
+                    <div class = "mt-1 md:mt-0" style = "width: 200px;">241/3 soi Payanak Banthadtong Rd. Ratchathewi Bangkok 10400</div>
+                </div>
+            </div>
+            <form class="flex flex-col items-start mt-10 md:mt-0" id = "contactInfo" name = "contactInfo" action="/contact" method="post">
+                <div class = "required-dot">
+                    First Name
+                </div>
+                <div class = "width-input-content">
+                    <input type="text" class = "width-input" id="firstName" name="firstName" required>
+                </div>
+                <div class = "mt-2 required-dot">
+                    Last Name
+                </div>
+                <div class = "width-input-content">
+                    <input type="text" class = "width-input" id="lastName" name="lastName" required>
+                </div>
+                <div class = "mt-2 required-dot">
+                    Email
+                </div>
+                <div class = "width-input-content">
+                    <input type="text" class = "width-input" id="email" name="email" required>
+                </div>
+                <div class = "mt-2 required-dot">
+                    Subject
+                </div>
+                <div class = "width-input-content">
+                    <input type="text" class = "width-input" id="subject" name="subject" required>
+                </div>
+                <div class = "mt-2 required-dot">
+                    Message
+                </div>
+                <div class = "width-input-content" style = "height: 150px;">
+                    <textarea class = "width-input" name="message" id="message" cols="30" rows="10" style = "resize: none;" placeholder required></textarea>
+                </div>
+                <div class = "width-input-content text-right mt-4">
+                    <button class = "btn-submit"  type="submit"style = "width: 125px;height: 30px;">submit</button>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+    <!-- end content -->
+
+    <%- include('./extra-views/footer.ejs') %>
+  <script src="../contact.js"></script>
+  <script src="../onClick.js"></script>
+</body>
+</html>
