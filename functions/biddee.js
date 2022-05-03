@@ -69,7 +69,7 @@ const sslOption = {
     cert : fs.readFileSync('./cert/cert.pem')
 }
 
-app.set('port',9000);
+app.set('port',process.env.PORT||9000);
 const http = require('http');
 
 const server = http.createServer(app);
@@ -77,5 +77,5 @@ const io = require('socket.io')(server);
 require('./socket/socket.js')(io);
 
 server.listen(app.get('port'), function() {
-    console.log('Biddee is working on port'+app.get('port'));
+    console.log('Biddee is working on port '+app.get('port'));
 })
