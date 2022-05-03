@@ -1,6 +1,6 @@
 const form = document.getElementById('bid')
 form.addEventListener('submit', bid)
-const host = "https://biddee.herokuapp.com/";
+const host = 'https://biddee.herokuapp.com';
 const socket = io.connect(host+'/auction/car');
 
 socket.on('auctionUpdate', function(data){

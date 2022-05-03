@@ -34,7 +34,7 @@ module.exports = function(app){
 
                 const link = `<p>Please click the link to reset your password</p>
                 <p>The link will expires in 5 minutes</p>
-                        <a href = "https://biddee.herokuapp.com/password-reset?id=${user._id}&token=${token}" > This link </a>`;
+                        <a href = "`+process.env.HOST+`/password-reset?id=${user._id}&token=${token}" > This link </a>`;
                         await sendEmail(user.email, "Password reset", link);
                         res.json({status:'ok' });    
             } catch {
