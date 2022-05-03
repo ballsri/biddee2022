@@ -7,7 +7,7 @@ const mongoose = require('mongoose'),
     session = require('express-session'),
     dotenv = require('dotenv').config(),
     
-    monconnect = mongoose.connect(config.dbURL);
+    monconnect = mongoose.connect(process.env.MONGO_URI);
     var cookieParser = require('cookie-parser');
     // const bodyParser = require('body-parser');
     
