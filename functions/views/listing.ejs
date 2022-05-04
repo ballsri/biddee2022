@@ -118,7 +118,7 @@
     <%- include('./extra-views/footer.ejs') %>
     <script src="../auction.js"></script>
     <script>
-        const host = "https://biddee.herokuapp.com";
+        const host = "http://biddee.ddns.net/";
         const socket = io.connect(host+'/auction/car') ;
         socket.on('allAuctionUpdate', function(data){
     

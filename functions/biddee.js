@@ -69,7 +69,7 @@ const sslOption = {
     cert : fs.readFileSync('./cert/cert.pem')
 }
 
-app.set('port',process.env.PORT||9000);
+app.set('port',process.env.PORT||80);
 const http = require('http');
 
 const server = http.createServer(app);
