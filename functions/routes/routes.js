@@ -3,8 +3,14 @@ const JWT_SECRET = process.env.JWT_SECRET;
     const jwt = require('jsonwebtoken');
     const User = require('../models/users');
     const jwt_decode = require('jwt-decode');
-   
+    const {getFileStream} = require('../controller/s3');
     var router = express.Router();
+
+    router.get('/uploads/:key', (req,res)=>{
+        const key = req.params.key;
+        const readStream = getFileStream(key);
+        readStream.pipe(res);
+    })
 
     router.get('/', async function(req, res, next){
         var userId = '' ;

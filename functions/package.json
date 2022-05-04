@@ -5,12 +5,13 @@
   "main": "biddee.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node biddee.js"
+    "start": "nodemon biddee.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "alert": "^5.0.10",
+    "aws-sdk": "^2.1127.0",
     "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
     "bootstrap": "^5.1.3",

@@ -5,6 +5,10 @@ const carProperties = require('../models/carProperties')
 const jwt_decode = require('jwt-decode')
 const User = require('../models/users');
 const Bidder = require('../models/bidders');
+const {uploadFile} = require('./s3.js')
+
+const util = require('util');
+const unlinkFile = util.promisify(fs.unlink);
 
 exports.home = async (req, res) => {
     const all_images = await UploadModel.find();
@@ -35,9 +39,16 @@ exports.uploads = async (req, res , next) => {
         return next(new Error('You can only upload a maximum of 30 files'));
     }
 
-    let result = imgArray.map((src, index) => {
+    // upload s3
+    files.forEach( async file => {
+        await uploadFile(file);
+    });
+
+
+    let result = imgArray.map(  (src, index) => {
 
         // create object to store data in the collection
+        
         let finalImg = {
             filename : files[index].originalname,
             contentType : files[index].mimetype,
@@ -66,6 +77,7 @@ exports.uploads = async (req, res , next) => {
             openPrice: req.body.Open__price,
             description: req.body.description
         })
+        
 
     // console.log(req.body)
     var userId = jwt_decode(req.session.token).id;
@@ -77,8 +89,15 @@ exports.uploads = async (req, res , next) => {
     
     Promise.all(result)
         .then( msg => {
-                // res.json(msg);
+                // console.log(result);
+                // result.map( file =>{
+                //     unlinkFile("./public"+file.path)
+                // })
             res.redirect('/user/mylist')
+            // console.log('hee');
+            result.map( file =>{
+                unlinkFile("./public"+file.path)
+            })
         })
         .catch(err =>{
             res.json(err);

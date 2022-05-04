@@ -47,13 +47,13 @@
                 <div>
                     <div class="slider-for ">
                         <% car.arrayOfImage.forEach(img => { %>
-                            <div><img id="../<%= img.path %>" onclick="zoompic(this)" style = "max-width:500px;height:300px;object-fit: contain;" src="../<%= img.path %>" alt=""></div>
+                            <div><img id="../<%= img.path %>" onclick="zoompic(this)" style = "max-width:500px;height:300px;object-fit: contain;" src="<%= img.path %>" alt=""></div>
                             <% });  %>
                         </div>
                     
                         <div class="slider-nav mt-5">
                         <% car.arrayOfImage.forEach(img => { %>
-                            <div><img style="width: 150px; height: 90px; object-fit: contain;" src="../<%= img.path %>" alt=""></div>           
+                            <div><img style="width: 150px; height: 90px; object-fit: contain;" src="<%= img.path %>" alt=""></div>           
                         <% });  %>
                     </div>
                 </div>
