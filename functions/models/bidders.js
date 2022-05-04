@@ -19,7 +19,7 @@ const bidder = new mongoose.Schema({
     },
     time :{
         type: Date,
-        default: Date()
+        default: Date.now
     },
     price : {
         type : String,

@@ -121,7 +121,7 @@
                                                     <td class="b-word text-center py-2"> <%= i+1 %></td>
                                                     <td class="b-word text-center py-2"><%= car.auction[i].lastname %></td>
                                                     <td class="b-word text-center py-2 color-red-bid" id = "priceTable<%=car.auction[i].price%>"><%= Number(car.auction[i].price).toLocaleString() %></td>
-                                                    <td class="b-word text-center py-2 "><%= new Date(car.auction[i].time).toLocaleString('en-GB') %></td>
+						    <td class="b-word text-center py-2 "><%= (new Date(car.auction[i].time)).toLocaleString('en-GB',{timeZone:'Asia/Bangkok'}) %></td>
                                                 </tr>
                                               <% }else{ %>
                                               
@@ -129,7 +129,7 @@
                                                     <td class="b-word text-center py-2"> <%= i+1 %></td>
                                                     <td class="b-word text-center py-2"><%= car.auction[i].lastname %></td>
                                                     <td class="b-word text-center py-2 color-green-bid" id = "priceTable<%=car.auction[i].price%>"><%= Number(car.auction[i].price).toLocaleString() %></td>
-                                                    <td class="b-word text-center py-2 "><%= new Date(car.auction[i].time).toLocaleString('en-GB') %></td>
+						    <td class="b-word text-center py-2 "><%= new Date(car.auction[i].time).toLocaleString('en-GB',{timeZone:'Asia/Bangkok'}) %></td>
                                                 </tr>
                                               <% } %>
                                             <% } %>

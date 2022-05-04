@@ -1,6 +1,6 @@
 const form = document.getElementById('bid')
 form.addEventListener('submit', bid)
-const host = 'http://biddee.ddns.net/';
+const host = 'https://biddee.ddns.net';
 const socket = io.connect(host+'/auction/car');
 
 socket.on('auctionUpdate', function(data){
@@ -29,7 +29,7 @@ socket.on('auctionUpdate', function(data){
                 +(i+1 ) + '</td><td class="b-word text-center py-2">'
                 + procData[i].lastname +'</td><td class="b-word text-center py-2 color-green-bid" id = "priceTable'+procData[i].price+'">'
                 + (Number(procData[i].price)).toLocaleString() +'</td><td class="b-word text-center py-2">'
-                + (new Date(procData[i].time).toLocaleString('en-GB')) +" </td></tr>"
+                + (new Date(procData[i].time).toLocaleString()) +" </td></tr>"
                 $('#auctionList').prepend(str);
         document.getElementById('priceTable'+procData[i-1].price).classList.remove('color-green-bid')
         document.getElementById('priceTable'+procData[i-1].price).classList.add('color-red-bid')
