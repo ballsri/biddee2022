@@ -89,12 +89,7 @@ exports.uploads = async (req, res , next) => {
     
     Promise.all(result)
         .then( msg => {
-                // console.log(result);
-                // result.map( file =>{
-                //     unlinkFile("./public"+file.path)
-                // })
             res.redirect('/user/mylist')
-            // console.log('hee');
             result.map( file =>{
                 unlinkFile("./public"+file.path)
             })
