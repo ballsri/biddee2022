@@ -29,8 +29,8 @@ function animateValue(item, start = 0) {
     
     
     var time = item.innerHTML;
-    // console.log(time);
-   
+// console.log(time);
+  
 var countDownDate = new Date(time).getTime();
    
     var x = setInterval(function() {
