@@ -29,15 +29,17 @@ function animateValue(item, start = 0) {
     
     
     var time = item.innerHTML;
-// console.log(time);
+ console.log(time);
   
 var countDownDate = new Date(time).getTime();
    
     var x = setInterval(function() {
 
         // Get today's date and time
-        var now = new Date().getTime();
-    
+        var now = new Date();
+//	    console.log(now);
+	    now = now.getTime();
+	    
         // Find the distance between now and the count down date
         var distance = countDownDate - now;
     

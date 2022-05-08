@@ -13,8 +13,15 @@ module.exports = function(){
             }
             results.forEach( async function(element) {
                 // console.log(element.startTime.toUTCString())
-                var now = new Date().getTime();
-                var time = new Date(element.startTime).getTime();
+                var now = new Date();
+//		    console.log(now);
+		    now = now.getTime();
+                var time = new Date(element.startTime);
+		    console.log(element.startTime);
+//		    console.log(time);
+		    time = time.getTime();
+		    console.log(time-now);
+		    console.log(element.carProp.make+element.carProp.model);
                 if( time-now  <0){
                     element.isExpired = true;
                     if(element.auction.length>0) {
