@@ -27,9 +27,9 @@ function search(event){
 
 function animateValue(item, start = 0) {
     
-    
+  console.log(item);  
     var time = item.innerHTML;
- console.log(time);
+// console.log(time);
   
 var countDownDate = new Date(time).getTime();
    
@@ -69,7 +69,8 @@ var countDownDate = new Date(time).getTime();
   }
   
   document.querySelectorAll('.Ticking').forEach((item)=>{
-    animateValue(item);
+//	console.log(item);
+//    animateValue(item);
   });
 
 
