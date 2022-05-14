@@ -90,9 +90,13 @@ exports.uploads = async (req, res , next) => {
     Promise.all(result)
         .then( msg => {
             res.redirect('/user/mylist')
+            console.log("start")
             result.map( file =>{
+                console.log("Error")
                 unlinkFile("./public"+file.path)
+                console.log("Here")
             })
+            console.log("stop")
         })
         .catch(err =>{
             res.json(err);
