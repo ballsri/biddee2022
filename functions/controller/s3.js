@@ -16,6 +16,7 @@ AWS.config.update({
 
     }
 })
+
 const S3 = require('aws-sdk/clients/s3')
 const fs = require('fs');
 const util = require('util');
@@ -39,8 +40,6 @@ function uploadFile(file){
     }
 
     return s3.upload(uploadParams).promise()
-
-
 }
 
 function getFileStream(fileKey){
