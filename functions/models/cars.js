@@ -72,7 +72,7 @@ const car = new mongoose.Schema({
     },
     startTime : {
         type: Date,
-        default: new Date().setDate(new Date().getDate() + 7)
+        default: new Date(new Date().getTime()+ 1000*60*60*24*7)
     },
     isApproved:{
         type : Boolean,

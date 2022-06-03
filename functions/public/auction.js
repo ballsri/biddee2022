@@ -67,9 +67,6 @@ function animateValue(item, start = 0) {
       item.innerHTML = hours + "h "
       + minutes + "m " + seconds + "s ";
     }
-    
-    
-    
   }, 1000);
 }
 
